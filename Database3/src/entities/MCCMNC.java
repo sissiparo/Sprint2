@@ -1,56 +1,64 @@
 package entities;
+import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import java.util.Set;
+
+
+/**
+ * The persistent class for the mccmnc database table.
+ * 
+ */
 @NamedQueries({
-		@NamedQuery(name = "MCCMNC.findAll", query = "select o from MCCMNC o"),
-		@NamedQuery(name = "MCCMNC.findMCCMNCById", query = "select o from MCCMNC o where o.mccmncID=:mccmncID"),
-		@NamedQuery(name = "MCCMNC.findMCCMNCByName", query = "select o from MCCMNC o where o.mcc=:mcc and o.mnc=:mnc") })
+	@NamedQuery(name = "MCCMNC.findAll", query = "select o from MCCMNC o"),
+	@NamedQuery(name = "MCCMNC.findMCCMNCById", query = "select o from MCCMNC o where o.mccmncID=:mccmncID"),
+	@NamedQuery(name = "MCCMNC.findMCCMNCByName", query = "select o from MCCMNC o where o.mnc=:mnc") })
+
 @Entity
 @XmlRootElement
-public class MCCMNC {
+public class MCCMNC implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int mccmncID;
-	private int mcc;
+
 	private int mnc;
+
 	private String operator;
 
-	public MCCMNC() {
+	//bi-directional many-to-one association to Basedata
+	@OneToMany(mappedBy="mccmnc", fetch = FetchType.EAGER)
+	private Set<BaseData> basedata;
 
-	}
+	//bi-directional many-to-one association to Country
+    @ManyToOne
+	@JoinColumn(name="mcc")
+	private Country country;
 
-	public MCCMNC(int mcc, int mnc, String operator) {
+    public MCCMNC() {
+    }
+    
+    public MCCMNC(Country country, int mnc, String operator) {
 		super();
-		this.mcc = mcc;
+	
+		this.country = country;
 		this.mnc = mnc;
 		this.operator = operator;
 	}
 
 	public int getMccmncID() {
-		return mccmncID;
+		return this.mccmncID;
 	}
 
 	public void setMccmncID(int mccmncID) {
 		this.mccmncID = mccmncID;
 	}
 
-	public int getMcc() {
-		return mcc;
-	}
-
-	public void setMcc(int mcc) {
-		this.mcc = mcc;
-	}
-
 	public int getMnc() {
-		return mnc;
+		return this.mnc;
 	}
 
 	public void setMnc(int mnc) {
@@ -58,11 +66,29 @@ public class MCCMNC {
 	}
 
 	public String getOperator() {
-		return operator;
+		return this.operator;
 	}
 
 	public void setOperator(String operator) {
 		this.operator = operator;
 	}
 
+//	public Set<BaseData> getBasedata() {
+//		return this.basedata;
+//	}
+//
+//	public void setBasedata(Set<BaseData> basedata) {
+//		this.basedata = basedata;
+//	}
+	
+	public Country getCountry() {
+		return this.country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+
+
+	
 }

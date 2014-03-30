@@ -1,86 +1,115 @@
 package entities;
+import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import java.util.Set;
+
+
+/**
+ * The persistent class for the userequipment database table.
+ * 
+ */
 @NamedQueries({ @NamedQuery(name = "UserEquipment.findTAC", query = "select o from UserEquipment o where o.tac=:tac"), })
+
 @Entity
 @XmlRootElement
-public class UserEquipment {
+public class UserEquipment implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	private String tac;
-	private int ueManufacturerId;
-	private int ueModelId;
-	private String ueType;
-	private String ueOperatingSys;
+
 	private String ueInputMode;
 
-	public UserEquipment() {
+	private String ueOperatingSys;
 
-	}
+	private String ueType;
 
-	public UserEquipment(String tac, int ueManufacturer, int ueModelId,
+	//bi-directional many-to-one association to Basedata
+	@OneToMany(mappedBy="userequipment", fetch = FetchType.EAGER)
+	private Set<BaseData> basedata;
+
+	//bi-directional many-to-one association to Manufacturer
+    @ManyToOne
+	@JoinColumn(name="ueManufacturerId")
+	private Manufacturer manufacturer;
+
+	//bi-directional many-to-one association to Uemodel
+    @ManyToOne
+	@JoinColumn(name="ueModelId")
+	private UEModel uemodel;
+
+    public UserEquipment() {
+    }
+
+    public UserEquipment(String tac, Manufacturer manufacturer, UEModel uemodel,
 			String ueType, String ueOperatingSys, String ueInputMode) {
 
 		super();
 		this.tac = tac;
-		this.ueManufacturerId = ueManufacturer;
-		this.ueModelId = ueModelId;
+		this.manufacturer = manufacturer;
+		this.uemodel = uemodel;
 		this.ueType = ueType;
 		this.ueOperatingSys = ueOperatingSys;
 		this.ueInputMode = ueInputMode;
 	}
-
+    
 	public String getTac() {
-		return tac;
+		return this.tac;
 	}
 
 	public void setTac(String tac) {
 		this.tac = tac;
 	}
 
-	public int getUeManufacturer() {
-		return ueManufacturerId;
-	}
-
-	public void setUeManufacturer(int ueManufacturer) {
-		this.ueManufacturerId = ueManufacturer;
-	}
-
-	public int getUeModel() {
-		return ueModelId;
-	}
-
-	public void setUeModel(int ueModelId) {
-		this.ueModelId = ueModelId;
-	}
-
-	public String getUeTypeID() {
-		return ueType;
-	}
-
-	public void setUeTypeID(String ueType) {
-		this.ueType = ueType;
-	}
-
-	public String getUeOperatingSys() {
-		return ueOperatingSys;
-	}
-
-	public void setUeOperatingSys(String ueOperatingSys) {
-		this.ueOperatingSys = ueOperatingSys;
-	}
-
 	public String getUeInputMode() {
-		return ueInputMode;
+		return this.ueInputMode;
 	}
 
 	public void setUeInputMode(String ueInputMode) {
 		this.ueInputMode = ueInputMode;
 	}
 
+	public String getUeOperatingSys() {
+		return this.ueOperatingSys;
+	}
+
+	public void setUeOperatingSys(String ueOperatingSys) {
+		this.ueOperatingSys = ueOperatingSys;
+	}
+
+	public String getUeType() {
+		return this.ueType;
+	}
+
+	public void setUeType(String ueType) {
+		this.ueType = ueType;
+	}
+
+//	public Set<BaseData> getBasedata() {
+//		return this.basedata;
+//	}
+//
+//	public void setBasedata(Set<BaseData> basedata) {
+//		this.basedata = basedata;
+//	}
+	
+	public Manufacturer getManufacturer() {
+		return this.manufacturer;
+	}
+
+	public void setManufacturer(Manufacturer manufacturer) {
+		this.manufacturer = manufacturer;
+	}
+	
+	public UEModel getUemodel() {
+		return this.uemodel;
+	}
+
+	public void setUemodel(UEModel uemodel) {
+		this.uemodel = uemodel;
+	}
+	
 }

@@ -17,7 +17,7 @@ import entities.Country;
 public class CountryDAO {
 
     @PersistenceContext
-    private EntityManager em;
+    private static EntityManager em;
     
     public Country getCountry(int mcc) {
         return em.find(Country.class, mcc);
@@ -30,7 +30,7 @@ public class CountryDAO {
     }
     
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public void addCountrys(List<Country> countries) {
+    public static void addCountries(List<Country> countries) {
         for (Country country : countries) {
             em.persist(country);
         }

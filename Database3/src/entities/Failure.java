@@ -1,32 +1,43 @@
 package entities;
+import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import java.util.Set;
+
+
+/**
+ * The persistent class for the failure database table.
+ * 
+ */
 @NamedQueries({ @NamedQuery(name = "Failure.findFailureCode", query = "select o from Failure o where o.failureID=:failureID"), })
+
 @Entity
 @XmlRootElement
-public class Failure {
+public class Failure implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	private int failureID;
+
 	private String failureDescription;
 
-	public Failure() {
+	//bi-directional many-to-one association to Basedata
+	@OneToMany(mappedBy="failure", fetch = FetchType.EAGER)
+	private Set<BaseData> basedata;
 
-	}
+    public Failure() {
+    }
 
-	public Failure(int failureID, String failureDescription) {
+    public Failure(int failureID, String failureDescription) {
 		super();
 		this.failureID = failureID;
 		this.failureDescription = failureDescription;
 	}
-
+    
 	public int getFailureID() {
-		return failureID;
+		return this.failureID;
 	}
 
 	public void setFailureID(int failureID) {
@@ -34,11 +45,19 @@ public class Failure {
 	}
 
 	public String getFailureDescription() {
-		return failureDescription;
+		return this.failureDescription;
 	}
 
 	public void setFailureDescription(String failureDescription) {
 		this.failureDescription = failureDescription;
 	}
 
+//	public Set<BaseData> getBasedata() {
+//		return this.basedata;
+//	}
+//
+//	public void setBasedata(Set<BaseData> basedata) {
+//		this.basedata = basedata;
+//	}
+	
 }

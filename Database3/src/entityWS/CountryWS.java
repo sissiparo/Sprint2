@@ -35,7 +35,7 @@ public class CountryWS {
     
     @POST
     public void addCountrys(List<Country> countries) {
-        countriesDao.addCountrys(countries);
+        countriesDao.addCountries(countries);
     }
     
 }

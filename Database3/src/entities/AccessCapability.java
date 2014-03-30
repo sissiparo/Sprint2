@@ -1,17 +1,19 @@
 package entities;
+import java.io.Serializable;
+import javax.persistence.*;
+import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.xml.bind.annotation.XmlRootElement;
 
+
+/**
+ * The persistent class for the accesscapability database table.
+ * 
+ */
 @NamedQueries({ @NamedQuery(name = "AccessCapability.findByAccessCapability", query = "select o from AccessCapability o where o.accessCapability=:accessCapability"), })
+
 @Entity
-@XmlRootElement
-public class AccessCapability {
+public class AccessCapability implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,17 +21,19 @@ public class AccessCapability {
 
 	private String accessCapability;
 
-	public AccessCapability() {
+	//bi-directional many-to-one association to UeAccesscapability
+//	@OneToMany(mappedBy="accesscapability")
+//	private Set<UeAccessCapability> ueAccesscapabilities;
 
-	}
+    public AccessCapability() {
+    }
 
-	public AccessCapability(String accessCapability) {
+    public AccessCapability(String accessCapability) {
 		super();
 		this.accessCapability = accessCapability;
 	}
-
 	public int getAccessID() {
-		return accessID;
+		return this.accessID;
 	}
 
 	public void setAccessID(int accessID) {
@@ -37,11 +41,19 @@ public class AccessCapability {
 	}
 
 	public String getAccessCapability() {
-		return accessCapability;
+		return this.accessCapability;
 	}
 
 	public void setAccessCapability(String accessCapability) {
 		this.accessCapability = accessCapability;
 	}
 
+//	public Set<UeAccessCapability> getUeAccesscapabilities() {
+//		return this.ueAccesscapabilities;
+//	}
+//
+//	public void setUeAccesscapabilities(Set<UeAccessCapability> ueAccesscapabilities) {
+//		this.ueAccesscapabilities = ueAccesscapabilities;
+//	}
+	
 }

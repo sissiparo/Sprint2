@@ -1,32 +1,43 @@
 package entities;
+import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
+import java.util.Set;
+
+
+/**
+ * The persistent class for the celltable database table.
+ * 
+ */
 @NamedQueries({
 	@NamedQuery(name = "CellTable.findByCellID", query = "select o from CellTable o where o.cellID=:cellID"),
  })
-
 @Entity
 @XmlRootElement
-public class CellTable {
+@XmlTransient
+public class CellTable implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-	
 	@Id
 	private int cellID;
 
-	private String hier3_ID, hier32_ID, hier321_ID;
+	private String hier3_ID;
 
-	public CellTable() {
+	private String hier32_ID;
 
-	}
+	private String hier321_ID;
 
-	public CellTable(int cellID, String hier3_ID, String hier32_ID,
+	//bi-directional many-to-one association to Basedata
+	@OneToMany(mappedBy="celltable")
+	private Set<BaseData> basedata;
+
+    public CellTable() {
+    }
+    
+    public CellTable(int cellID, String hier3_ID, String hier32_ID,
 			String hier321_ID) {
 		super();
 		this.cellID = cellID;
@@ -36,7 +47,7 @@ public class CellTable {
 	}
 
 	public int getCellID() {
-		return cellID;
+		return this.cellID;
 	}
 
 	public void setCellID(int cellID) {
@@ -44,7 +55,7 @@ public class CellTable {
 	}
 
 	public String getHier3_ID() {
-		return hier3_ID;
+		return this.hier3_ID;
 	}
 
 	public void setHier3_ID(String hier3_ID) {
@@ -52,7 +63,7 @@ public class CellTable {
 	}
 
 	public String getHier32_ID() {
-		return hier32_ID;
+		return this.hier32_ID;
 	}
 
 	public void setHier32_ID(String hier32_ID) {
@@ -60,11 +71,19 @@ public class CellTable {
 	}
 
 	public String getHier321_ID() {
-		return hier321_ID;
+		return this.hier321_ID;
 	}
 
 	public void setHier321_ID(String hier321_ID) {
 		this.hier321_ID = hier321_ID;
 	}
 
+//	public Set<BaseData> getBasedata() {
+//		return this.basedata;
+//	}
+//
+//	public void setBasedata(Set<BaseData> basedata) {
+//		this.basedata = basedata;
+//	}
+	
 }

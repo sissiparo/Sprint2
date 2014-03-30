@@ -1,35 +1,45 @@
 package entities;
+import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import java.util.Set;
+
+
+/**
+ * The persistent class for the manufacturer database table.
+ * 
+ */
 @NamedQueries({
-		@NamedQuery(name = "Manufacturer.findAll", query = "select o from Manufacturer o"),
-		@NamedQuery(name = "Manufacturer.findByName", query = "select o from Manufacturer o where o.manufacturerName=:manufacturerName"), })
+	@NamedQuery(name = "Manufacturer.findAll", query = "select o from Manufacturer o"),
+	@NamedQuery(name = "Manufacturer.findByName", query = "select o from Manufacturer o where o.manufacturerName=:manufacturerName"), })
+
 @Entity
 @XmlRootElement
-public class Manufacturer {
+public class Manufacturer implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int manufacturerID;
+
 	private String manufacturerName;
 
-	public Manufacturer() {
+	//bi-directional many-to-one association to Userequipment
+	@OneToMany(mappedBy="manufacturer", fetch = FetchType.EAGER)
+	private Set<UserEquipment> userequipments;
 
-	}
-
-	public Manufacturer(String manufacturerName) {
+    public Manufacturer() {
+    }
+    
+    public Manufacturer(String manufacturerName) {
 		super();
 		this.manufacturerName = manufacturerName;
 	}
 
 	public int getManufacturerID() {
-		return manufacturerID;
+		return this.manufacturerID;
 	}
 
 	public void setManufacturerID(int manufacturerID) {
@@ -37,11 +47,19 @@ public class Manufacturer {
 	}
 
 	public String getManufacturerName() {
-		return manufacturerName;
+		return this.manufacturerName;
 	}
 
 	public void setManufacturerName(String manufacturerName) {
 		this.manufacturerName = manufacturerName;
 	}
 
+//	public Set<UserEquipment> getUserequipments() {
+//		return this.userequipments;
+//	}
+//
+//	public void setUserequipments(Set<UserEquipment> userequipments) {
+//		this.userequipments = userequipments;
+//	}
+	
 }
