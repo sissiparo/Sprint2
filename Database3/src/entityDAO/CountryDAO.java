@@ -16,6 +16,7 @@ import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 import loader.ColumnIndexes;
+import loader.CountryConfig;
 import loader.WorkbookSingleton;
 import entities.Country;
 
@@ -38,15 +39,14 @@ public class CountryDAO {
     }
     
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public void addCountries(List<Country> countries) {
-    	for(Country country : countries){
-    		em.persist(country);
-    	}
+    public void addCountries() {
+    	System.out.println("country...");
+
     }
     
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public void addCountry(Country country) {
-//    	Country country = new Country(555, "Wales");
+    public void addCountry() {
+    	Country country = new Country(555, "Wales");
         em.persist(country);
     }
     

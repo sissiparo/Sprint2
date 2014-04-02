@@ -10,6 +10,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
+import loader.CountryConfig;
 import entities.Country;
 import entityDAO.CountryDAO;
 
@@ -20,6 +21,9 @@ public class CountryWS {
 
     @EJB
     private CountryDAO countriesDao;
+    
+    @EJB
+    private CountryConfig config;
 
     @GET
     @Path("/{mcc}")
@@ -33,15 +37,15 @@ public class CountryWS {
         return countriesDao.getAllCountry();
     }
     
-    @POST
-    public void addCountry(Country country) {
-        countriesDao.addCountry(country);
-    }
+//    @POST
+//    public void addCountry(Country country) {
+//        countriesDao.addCountry(country);
+//    }
     
-    @POST
+    @GET
     @Path("/add/countries")
-    public void addCountries(List<Country> countries) {
-        countriesDao.addCountries(countries);
+    public void addCountries() {
+        config.addCountries();
     }
     
 }
