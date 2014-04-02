@@ -1,3 +1,14 @@
+//Javascript name: My Date Time Picker  
+//Date created: 16-Nov-2003 23:19  
+//Scripter: TengYong Ng  
+//Website: http://www.rainforestnet.com  
+//Copyright (c) 2003 TengYong Ng  
+//FileName: DateTimePicker.js  
+//Version: 0.8  
+//Contact: contact@rainforestnet.com  
+// Note: Permission given to use this script in ANY kind of applications if  
+//       header lines are left unchanged.  
+
 //Global variables
 var SQLDATESEPERATOR = "-";
 var winCal;
@@ -261,9 +272,9 @@ function GenCell(pValue,pHighLight,pColor)//Generate table cell with value
 	else
 		vTimeStr="";
 	
-	PCellStr="<td "+vColor+" width="+CellWidth+" align='center'><font face='verdana' size='2'"+vHLstr1+"<a href=\"javascript:winMain.document.getElementById('"+Cal.Ctrl+"').value='"+Cal.FormatDate(PValue)+"';"+vTimeStr+";window.close();\">"+PValue+"</a>"+vHLstr2+"</font></td>";
-	SQLFriendlyPCell="<td "+vColor+" width="+CellWidth+" align='center'><font face='verdana' size='2'"+vHLstr1+"<a href=\"javascript:winMain.document.getElementById('"+Cal.Ctrl+"').value='"+Cal.FormatDate(PValue)+"';window.close();\">"+PValue+"</a>"+vHLstr2+"</font></td>";
-	
+	PCellStr="<td "+vColor+" width="+CellWidth+" align='center'><font face='verdana' size='2'"+vHLstr1+"<a href=\"javascript:winMain.document.getElementById('"+Cal.Ctrl+"').value='"+Cal.FormatDate(PValue)        +"';"+vTimeStr+";window.close();\">"+PValue+"</a>"+vHLstr2+"</font></td>";
+	SQLFriendlyPCell="<td "+vColor+" width="+CellWidth+" align='center'><font face='verdana' size='2'"+vHLstr1+"<a href=\"javascript:winMain.document.getElementById('"+Cal.Ctrl+"').value='"+Cal.FormatDate(PValue)+"';"+vTimeStr+";window.close();\">"+PValue+"</a>"+vHLstr2+"</font></td>";
+	//SQLFriendlyPCell="<td "+vColor+" width="+CellWidth+" align='center'><font face='verdana' size='2'"+vHLstr1+"<a href=\"javascript:winMain.document.getElementById('"+Cal.Ctrl+"').value='"+Cal.FormatDate(PValue)+"';window.close();\">"+PValue+"</a>"+vHLstr2+"</font></td>";
 	return SQLFriendlyPCell;
 }
 
