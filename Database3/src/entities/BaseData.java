@@ -4,8 +4,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import java.text.FieldPosition;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-
 
 /**
  * The persistent class for the basedata database table.
@@ -20,12 +21,11 @@ public class BaseData implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int baseDataID;
 
-    //@Temporal( TemporalType.DATE)
-//	private java.sql.Timestamp baseDate;
+	
+	private java.sql.Timestamp baseDate;
 
 	private int duration;
 	
-	@Column(name = "imsi")
 	private String imsi;
 
 	private String neVersion;
@@ -71,7 +71,7 @@ public class BaseData implements Serializable {
 		this.imsi = imsi;
 		this.duration = duration;
 		this.neVersion = neVersion;
-//		this.baseDate = baseDate;
+		this.baseDate = baseDate;
     }
 	public int getBaseDataID() {
 		return this.baseDataID;
@@ -81,19 +81,13 @@ public class BaseData implements Serializable {
 		this.baseDataID = baseDataID;
 	}
 
-	
+	public java.sql.Timestamp getBaseDate() {
+		return baseDate;
+	}
 
-//	public java.sql.Timestamp getBaseDate() {
-//		return baseDate;
-//	}
-//
-//
-//
-//	public void setBaseDate(java.sql.Timestamp baseDate) {
-//		this.baseDate = baseDate;
-//	}
-
-
+	public void setBaseDate(java.sql.Timestamp baseDate) {
+		this.baseDate = baseDate;
+	}
 
 	public int getDuration() {
 		return this.duration;

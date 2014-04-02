@@ -30,7 +30,7 @@ public class AccessCapabilityDAO {
         }
     
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public void addAccessCapabilitys(List<AccessCapability> accessCapabilitys) {
+    public void addAccessCapabilities(List<AccessCapability> accessCapabilitys) {
         for (AccessCapability accessCapability : accessCapabilitys) {
             em.persist(accessCapability);
         }

@@ -1,5 +1,6 @@
 package entityDAO;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -9,6 +10,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 
 import entities.BaseData;
@@ -50,17 +52,24 @@ public class BaseDataDAO {
     			+ " where imsi=" + imsi);
     	List<BaseData> listOfBaseData = q.getResultList();
 		return listOfBaseData;
-
+    }
+    
+    public List<BaseData> userStory5(String imsi, Date startDate, Date endDate){
+    	Query q = em.createQuery("select count(*) from BaseData where BaseDate between : startDate '' and endDate '' and imsi="+ imsi)
+    	.setParameter("startDate", startDate, TemporalType.DATE)
+        .setParameter("endDate", endDate, TemporalType.DATE);
+    	List<BaseData> listOfBaseData = q.getResultList();
+		return listOfBaseData;
     }
     
     public List<BaseData> userStory6(String imsi){
-    	Query q = em.createQuery("SELECT b.imsi, b.eventcause.eventID, b.eventcause.eventcauseCode,"
-    			+ " b.eventcause.causeCode, b.eventcause.causeDescription FROM BaseData b where imsi=" + imsi
-    			+ " GROUP BY b.eventcause.causeCode");
+    	Query q = em.createQuery("SELECT imsi, eventcause.eventID, eventcause.eventcauseCode,"
+    			+ " eventcause.causeCode, eventcause.causeDescription FROM BaseData where imsi=" + imsi
+    			+ " GROUP BY eventcause.causeCode");
     	List<BaseData> listOfBaseData = q.getResultList();
 		return listOfBaseData;
-
     }
+
     
     
 }

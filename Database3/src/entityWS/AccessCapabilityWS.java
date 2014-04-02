@@ -35,7 +35,7 @@ public class AccessCapabilityWS {
     
     @POST
     public void addAccessCapabilitys(List<AccessCapability> accessCapabilities) {
-        accessCapabilitysDao.addAccessCapabilitys(accessCapabilities);
+        accessCapabilitysDao.addAccessCapabilities(accessCapabilities);
     }
     
 }

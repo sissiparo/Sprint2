@@ -34,7 +34,13 @@ public class CountryWS {
     }
     
     @POST
-    public void addCountrys(List<Country> countries) {
+    public void addCountry(Country country) {
+        countriesDao.addCountry(country);
+    }
+    
+    @POST
+    @Path("/add/countries")
+    public void addCountries(List<Country> countries) {
         countriesDao.addCountries(countries);
     }
     

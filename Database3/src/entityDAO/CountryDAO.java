@@ -1,5 +1,7 @@
 package entityDAO;
 
+
+
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -10,6 +12,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+import loader.ColumnIndexes;
+import loader.WorkbookSingleton;
 import entities.Country;
 
 @Stateless
@@ -17,7 +24,8 @@ import entities.Country;
 public class CountryDAO {
 
     @PersistenceContext
-    private static EntityManager em;
+    private EntityManager em;
+
     
     public Country getCountry(int mcc) {
         return em.find(Country.class, mcc);
@@ -30,10 +38,16 @@ public class CountryDAO {
     }
     
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public static void addCountries(List<Country> countries) {
-        for (Country country : countries) {
-            em.persist(country);
-        }
+    public void addCountries(List<Country> countries) {
+    	for(Country country : countries){
+    		em.persist(country);
+    	}
+    }
+    
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public void addCountry(Country country) {
+//    	Country country = new Country(555, "Wales");
+        em.persist(country);
     }
     
 }

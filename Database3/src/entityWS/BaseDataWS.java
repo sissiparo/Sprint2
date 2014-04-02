@@ -1,5 +1,6 @@
 package entityWS;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -39,6 +40,14 @@ public class BaseDataWS {
     }
     
     @GET
+    @Path("/userStory5/{imsi}/{startDate}/{endDate}")
+    @Produces("application/json")
+    public List<BaseData> userStory5(@PathParam("imsi") String imsi, 
+    		@PathParam("startDate") Date startDate, @PathParam("endDate") Date endDate) {
+        return baseDataDao.userStory5(imsi, startDate, endDate);
+    }
+    
+    @GET
     @Path("/userStory6/{imsi}")
     @Produces("application/json")
     public List<BaseData> userStory6(@PathParam("imsi") String imsi) {
@@ -63,5 +72,5 @@ public class BaseDataWS {
     public void addBaseDatas(List<BaseData> baseDatas) {
         baseDataDao.addBaseDatas(baseDatas);
     }
-    
+
 }
