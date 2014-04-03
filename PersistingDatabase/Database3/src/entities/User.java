@@ -17,23 +17,25 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
+@Table (name="User")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userID;
 
+	@Column
 	private String employeeNumber;
-
+	@Column
 	private String firstName;
-
+	@Column
 	private String lastName;
-
+	@Column
 	private String password;
-
+	@Column
 	private String userName;
-
+	@Column
 	private String userType;
 
     public User() {

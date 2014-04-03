@@ -14,8 +14,10 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.UserTransaction;
 
 import entities.AccessCapability;
 import entities.BaseData;
@@ -25,6 +27,7 @@ import entities.EventCause;
 import entities.Failure;
 import entities.MCCMNC;
 import entities.UserEquipment;
+import entityDAO.BaseDataDAO;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
@@ -47,6 +50,7 @@ public class BaseDataAndCellTableConfig extends SuperConfig {
 	public CellTable celltable;
 	public Failure failure;
 	public UserEquipment userequipment;
+	public List<BaseData> bds = new ArrayList<BaseData>();
 
 	SimpleDateFormat sdf = new SimpleDateFormat("");
 	static java.util.Date time = new java.util.Date();
@@ -89,8 +93,10 @@ public class BaseDataAndCellTableConfig extends SuperConfig {
 
 	@PersistenceContext
 	private EntityManager em;
+	
+	//EntityManager em = emf.createEntityManager();
 
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	//@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void addBaseDataAndCellTableConfig() {
 
 		try {
@@ -138,12 +144,8 @@ public class BaseDataAndCellTableConfig extends SuperConfig {
 							duration, causeCode, neVersion, imsi, hier3_ID,
 							hier32_ID, hier321_ID };
 
-					// if (checkRowIsValid(rowOfStrings)) {
 					getObjects();
-					// eventCauseID = getEventCause(
-					// Integer.parseInt(eventID),
-					// Integer.parseInt(causeCode))
-					// .getEventcauseCode();
+					
 
 					mccmncID = getMCCMNC(Integer.parseInt(mncID),
 							em.find(Country.class, Integer.parseInt(mccID)))
@@ -152,15 +154,22 @@ public class BaseDataAndCellTableConfig extends SuperConfig {
 					
 
 					try {
+						for(int count=0; count<=100; count++){
 						if (eventcause != null) {
 							baseData = new BaseData(eventcause, mccmnc,
 									celltable, Integer.parseInt(duration),
 									imsi, failure, userequipment, neVersion,
 									parseDate(baseDate));
 
-							em.persist(baseData);
+							bds.add(baseData);
+							//em.persist(baseData);
+							if(count==100){
+								addBaseDatas(bds);
+								bds.clear();
+								count=0;
+							}
 						}
-
+						}
 					} catch (NumberFormatException e) {
 						System.out
 								.println("Check has been performed already so should not throw");
@@ -182,6 +191,21 @@ public class BaseDataAndCellTableConfig extends SuperConfig {
 
 	}
 
+	
+//	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public void addBaseDatas(List<BaseData> baseDatas) {
+    	//UserTransaction transaction = transactionManagerSqlServer.getUserTransaction();
+    	//em.getTransaction().begin();
+        for (BaseData baseData : baseDatas) {
+            em.persist(baseData);
+            
+        }
+        em.flush();
+        em.clear();
+       // em.getTransaction().commit();
+      
+	}
+	
 	public EventCause getEventCause(int eventID, int causeCode) {
 		Query q = em
 				.createQuery("select o from EventCause o where o.eventID=:eventID and o.causeCode=:causeCode");

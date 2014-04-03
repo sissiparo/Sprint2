@@ -14,13 +14,16 @@ import java.util.Set;
 @NamedQueries({ @NamedQuery(name = "AccessCapability.findByAccessCapability", query = "select o from AccessCapability o where o.accessCapability=:accessCapability"), })
 
 @Entity
+@Table (name="AccessCapability")
 public class AccessCapability implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column
 	private int accessID;
 
+	@Column
 	private String accessCapability;
 
 	//bi-directional many-to-one association to UeAccesscapability

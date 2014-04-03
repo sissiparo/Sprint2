@@ -1,15 +1,21 @@
 package entityWS;
 
-import java.util.List;
-
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 
+import entityDAO.CountryDAO;
+import loader.CountryConfig;
+import loader.AccessCapabilityConfig;
+import loader.FailureConfig;
+import loader.MCCMNCConfig;
+//import loader.UserConfig;
+import loader.EventCauseConfig;
+import loader.ManufacturerConfig;
+import loader.UEModelConfig;
 import loader.CellTableConfig;
 import loader.CountryConfig;
 import loader.EventCauseConfig;
@@ -20,16 +26,17 @@ import loader.BaseDataAndCellTableConfig;
 import loader.ManufacturerConfig;
 import loader.UE_AccessCapabilityConfig;
 import loader.UEModelConfig;
+import loader.UserConfig;
 import loader.UserEquipmentConfig;
-import entities.Country;
-import entityDAO.CountryDAO;
 
-@Path("/country")
+
+
+@Path("/load")
 @Stateless
 @LocalBean
-public class CountryWS {
-
-    @EJB
+public class LoaderWS {
+	
+	@EJB
     private CountryDAO countriesDao;
     
     @EJB
@@ -65,38 +72,30 @@ public class CountryWS {
     @EJB
     private CellTableConfig ctConfig;
     
-    @GET
-    @Path("/{mcc}")
-    public Country getCountry(@PathParam("mcc") int mcc) {
-        return countriesDao.getCountry(mcc);
+    @EJB
+    private UserConfig userConfig;
+    
+    @POST
+    @Path("/add")
+    public void addAll() {
+    	long startTime = System.nanoTime();
+
+      config.addCountries();
+      mccmncConfig.addMCCMNC();
+      eventCauseConfig.addEventCause();
+      failureConfig.addFailures();
+      accConfig.addAccessCapability();
+      manufacturerConfig.addManufacturer();
+      ueacConfig.addUeAccessCapability();
+      ueModelConfig.addUEModel();
+      userEquipConfig.addUserEquipment();
+      ctConfig.addBaseDataAndCellTableConfig();
+      userConfig.addUsers();
+      bdactConfig.addBaseDataAndCellTableConfig();
+    	
+        long endTime = System.nanoTime();
+		
+		System.out.println("Upload took " + (endTime-startTime)/1000000000 + " seconds");
     }
-    
-    @GET
-    @Path("/all")
-    public List<Country> getAllCountry() {
-        return countriesDao.getAllCountry();
-    }
-    
-//    @POST
-//    public void addCountry(Country country) {
-//        countriesDao.addCountry(country);
-//    }
-    
-    @GET
-    @Path("/add/countries")
-    public void addCountries() {
-//        config.addCountries();
-//        mccmncConfig.addMCCMNC();
-//        eventCauseConfig.addEventCause();
-//        failureConfig.addFailures();
-//        accConfig.addAccessCapability();
-//        manufacturerConfig.addManufacturer();
-//        ueacConfig.addUeAccessCapability();
-//        ueModelConfig.addUEModel();
-//        userEquipConfig.addUserEquipment();
-//        ctConfig.addBaseDataAndCellTableConfig();
-        bdactConfig.addBaseDataAndCellTableConfig();
-        
-    }
-    
+
 }
