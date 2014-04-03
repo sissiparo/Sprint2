@@ -22,7 +22,7 @@
 
 			<td>
 				<div class="button">
-					<span class="main blue"><a href="UserStory5.html">US5-Failure
+					<span class="main blue"><a href="../queries/userStory5.html">US5-Failure
 							count by imsi</a></span><!-- <span class="bottom green"><a href="#">Failures
 							for imsi over period</a></span> <span class="top green"><a href="#">Customer
 							service rep</a></span> -->
@@ -31,7 +31,7 @@
 
 			<td>
 				<div class="button">
-					<span class="main blue"><a href="UserStory6.html">US6-Cause
+					<span class="main blue"><a href="../queries/userStory6.html">US6-Cause
 							codes</a></span> <!--<span class="bottom green"><a href="#">Unique
 							cause codes for given imsi</a></span> <span class="top green"><a
 						href="#">Customer service rep</a></span>-->
@@ -41,7 +41,7 @@
 		<tr ALIGN="CENTER">
 			<td>
 				<div class="button">
-					<span class="main blue"><a href="UserStory7.html">US7-Imsi
+					<span class="main blue"><a href="../queries/userStory7.html">US7-Imsi
 							failures</a></span> <!--<span class="bottom orange"><a href="#">IMSIs
 							with call failures over period</a></span> <span class="top orange"><a
 						href="#">Support Engineer</a></span>-->
@@ -49,7 +49,7 @@
 			</td>
 			<td>
 				<div class="button">
-					<span class="main blue"><a href="UserStory8.jsp">US8-Failures
+					<span class="main blue"><a href="../queries/userStory8.jsp">US8-Failures
 							for model</a></span> <!--<span class="bottom orange"><a href="#">Failures
 							for given model over period</a></span> <span class="top orange"><a
 						href="#">Support Engineer</a></span>-->
@@ -57,7 +57,7 @@
 			</td>
 			<td>
 				<div class="button">
-					<span class="main blue"><a href="UserStory9.html">US9-Failure
+					<span class="main blue"><a href="../queries/userStory9.html">US9-Failure
 							count/duration</a></span> <!--<span class="bottom red"><a href="#">Count
 							and duration for imsi over period</a></span> <span class="top red"><a
 						href="#">Network Management Engineer </a></span>-->
@@ -68,7 +68,7 @@
 			<td>
 				<div class="button">
 					<span class="main blue"><a
-						href="UserStory10.html">US10-Failure count model</a></span><!-- <span
+						href="../queries/userStory10.html">US10-Failure count model</a></span><!-- <span
 						class="bottom red"><a href="#">Failures for model over
 							period</a></span> <span class="top red"><a href="#">Network
 							Management Engineer </a></span>-->
@@ -77,7 +77,7 @@
 			<td>
 				<div class="button">
 					<span class="main blue"><a
-						href="UserStory11.html">US11-Top 10 IMSI/Operator</a></span><!-- <span
+						href="../queries/userStory11.html">US11-Top 10 IMSI/Operator</a></span><!-- <span
 						class="bottom red"><a href="#">Top call failure
 							combinations over period</a></span> <span class="top red"><a href="#">Network
 							Management Engineer </a></span>-->
@@ -86,7 +86,7 @@
 			<td>
 				<div class="button">
 					<span class="main blue"><a
-						href="UserStory12.html">US12-Top 10 IMSI failures</a></span> <span
+						href="../queries/userStory12.html">US12-Top 10 IMSI failures</a></span> <span
 						class="bottom red"> <!--<a href="#">Top imsis for call
 							failures over period</a></span> <span class="top red"><a href="#">Network
 							Management Engineer </a></span>-->
@@ -97,7 +97,7 @@
 			<td>
 				<div class="button">
 					<span class="main blue"><a
-						href="UserStory14.html">US14-imsis affected</a></span> <!--<span
+						href="../queries/userStory14.html">US14-imsis affected</a></span> <!--<span
 						class="bottom orange"><a href="#">Display imsis
 							affected by given cause class</a></span> <span class="top orange"><a
 						href="#">Support Engineer</a></span>-->
@@ -106,14 +106,14 @@
 			<td>
 				<div class="button">
 					<span class="main blue"><a
-						href="Registration.html">Register</a></span> <!--<span
+						href="../queries/registration.html">Register</a></span> <!--<span
 						class="bottom black"><a href="#">Add new users</a></span> <span
 						class="top black"><a href="#">System Administrator</a></span>-->
 				</div> <br>
 			</td>
 			<td>
 				<div class="button">
-					<span class="main blue"><a href="Upload.jsp">Upload</a></span>
+					<span class="main blue"><a href="../queries/upload.jsp">Upload</a></span>
 					<!--<span class="bottom black"><a href="#">Upload data</a></span> <span
 						class="top black"><a href="#">System Administrator</a></span>
 				</div> <br>-->

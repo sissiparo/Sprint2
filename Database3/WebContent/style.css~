@@ -1,6 +1,6 @@
 .table {
     border: 2px solid black;
-    width: 75%;
+    width: 50%;
     text-align: center;
     background-color: #66ccff;
     margin-left: auto;

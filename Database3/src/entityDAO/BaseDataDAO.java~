@@ -48,7 +48,7 @@ public class BaseDataDAO {
     }
     
     public List<BaseData> userStory4(String imsi){
-    	Query q = em.createQuery("select imsi, eventcause.eventID, eventcause.causeCode,eventcause.causeDescription, baseDate from BaseData"
+    	Query q = em.createQuery("select imsi, eventcause.eventID, eventcause.causeCode from BaseData"
     			+ " where imsi=" + imsi);
     	List<BaseData> listOfBaseData = q.getResultList();
 		return listOfBaseData;
