@@ -70,6 +70,18 @@ public class BaseDataDAO {
 		return listOfBaseData;
     }
 
+    public List<BaseData> userStory10(String TAC){
+    	Query q = em.createQuery("SELECT b.eventCauseID as 'Cause Code', e.causeDescription as 'Cause Description',"
+    			+ " COUNT(*) AS 'total' FROM BaseData as b, EventCause as e, WHERE b.TAC= " + TAC + " Group by b.TAC, b.eventCauseID,"
+    			+ " Order by b.eventCauseID;");
+    	List<BaseData> listOfBaseData = q.getResultList();
+		return listOfBaseData;
+    }
     
+    public List<BaseData> userStory14(String failureClassID){
+    	Query q = em.createQuery("SELECT baseDate, imsi, eventcause.eventID, eventcause.causeDescription from BaseData where failureClassID =" + Integer.parseInt(failureClassID) + " order by imsi,baseDate");
+    	List<BaseData> listOfBaseData = q.getResultList();
+		return listOfBaseData;
+    }
     
 }

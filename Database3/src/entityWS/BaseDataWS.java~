@@ -68,20 +68,6 @@ public class BaseDataWS {
         return baseDataDao.getImsiBaseData();
     }
     
-@GET
-    @Path("/userStory10/{TAC}")
-    @Produces("application/json")
-    public List<BaseData> userStory10(@PathParam("TAC") String TAC) {
-        return baseDataDao.userStory10(TAC);
-    }
-    
-    @GET
-    @Path("/userStory14/{failureClassID}")
-    @Produces("application/json")
-    public List<BaseData> userStory14(@PathParam("failureClassID") String failureClassID ) {
-        return baseDataDao.userStory14(failureClassID);
-    }
-
     @POST
     public void addBaseDatas(List<BaseData> baseDatas) {
         baseDataDao.addBaseDatas(baseDatas);
