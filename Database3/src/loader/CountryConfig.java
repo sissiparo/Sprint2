@@ -13,11 +13,12 @@ import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 import entities.Country;
+import entityDAO.CountryDAO;;
 
 @Stateless
 @LocalBean
-public class CountryConfig {
-	String workbookFileName = "/home/group5/workspace/Database3/LargeData.xls";
+public class CountryConfig extends SuperConfig{
+	//String workbookFileName = "/home/group5/workspace/Database3/LargeData.xls";
     @PersistenceContext
     private EntityManager em;
     
@@ -41,6 +42,7 @@ public class CountryConfig {
 									.getContents());
 					System.out.println(mcc + " " + row[ColumnIndexes.MCCMNC_COUNTRY_COLNO]
 							.getContents());
+					if (em.find(Country.class, mcc)==null)
 				em.persist(country);
 			}
 		}

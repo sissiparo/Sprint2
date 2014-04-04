@@ -12,28 +12,32 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @NamedQueries({
 	@NamedQuery(name = "User.findUserName", query = "select o from User o where o.userName=:userName"),
-	@NamedQuery(name = "User.findAll", query = "select o from User o")
+	@NamedQuery(name = "User.findAll", query = "select o from User o"),
+	@NamedQuery(name = "User.findUserNamePassword", query = "select o from User o where o.userName=:userName and o.password=:password")
 })
 
 @Entity
 @XmlRootElement
+@Table (name="User")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userID;
 
+	@Column
 	private String employeeNumber;
-
+	@Column
 	private String firstName;
-
+	@Column
 	private String lastName;
-
+	@Column
 	private String password;
-
+	@Column
 	private String userName;
-
+	@Column
 	private String userType;
 
     public User() {

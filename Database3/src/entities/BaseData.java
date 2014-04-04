@@ -13,21 +13,23 @@ import java.util.Date;
  * 
  */
 @Entity
+@Table (name="BaseData")
 @XmlRootElement
 public class BaseData implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
 	private int baseDataID;
 
-	
+	@Column
 	private java.sql.Timestamp baseDate;
-
+	@Column
 	private int duration;
-	
+	@Column
 	private String imsi;
-
+	@Column
 	private String neVersion;
 
 	//bi-directional many-to-one association to Celltable

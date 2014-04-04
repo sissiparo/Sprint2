@@ -16,14 +16,16 @@ import java.util.Set;
 	@NamedQuery(name = "Manufacturer.findByName", query = "select o from Manufacturer o where o.manufacturerName=:manufacturerName"), })
 
 @Entity
+@Table(name="Manufacturer")
 @XmlRootElement
 public class Manufacturer implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int manufacturerID;
-
+	@Column
 	private String manufacturerName;
 
 	//bi-directional many-to-one association to Userequipment

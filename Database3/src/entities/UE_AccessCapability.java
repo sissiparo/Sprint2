@@ -1,45 +1,50 @@
 package entities;
+import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.*;
 
+
+/**
+ * The persistent class for the ue_accesscapability database table.
+ * 
+ */
 @Entity
-@XmlRootElement
-@IdClass(UE_AccessCapabilityId.class)
-public class UE_AccessCapability {
+@Table(name="UE_AccessCapability")
+public class UE_AccessCapability implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-	@Id
-	String userEquipID;
+	@EmbeddedId
+	private UeAccesscapabilityPK id;
 
-	@Id
-	int accessCapabilityID;
+	//bi-directional many-to-one association to Accesscapability
+    @ManyToOne
+	@JoinColumn(name="accessCapabilityID", insertable = false, updatable = false)
+	private AccessCapability accesscapability;
 
-	public UE_AccessCapability() {
+    public UE_AccessCapability() {
+    }
+    
+    public UE_AccessCapability(UeAccesscapabilityPK id) {
+    	super();
+    	this.id = id;
+    	//this.accesscapability = accesscapability;
+    
+    }
 
+	public UeAccesscapabilityPK getId() {
+		return this.id;
 	}
 
-	public UE_AccessCapability(String userEquipID, int accessCapabilityID) {
-		super();
-		this.userEquipID = userEquipID;
-		this.accessCapabilityID = accessCapabilityID;
+	public void setId(UeAccesscapabilityPK id) {
+		this.id = id;
+	}
+	
+	public AccessCapability getAccesscapability() {
+		return this.accesscapability;
 	}
 
-	public String getUserEquipID() {
-		return userEquipID;
+	public void setAccesscapability(AccessCapability accesscapability) {
+		this.accesscapability = accesscapability;
 	}
-
-	public void setUserEquipID(String userEquipID) {
-		this.userEquipID = userEquipID;
-	}
-
-	public int getAccessCapabilityID() {
-		return accessCapabilityID;
-	}
-
-	public void setAccessCapabilityID(int accessCapabilityID) {
-		this.accessCapabilityID = accessCapabilityID;
-	}
-
+	
 }

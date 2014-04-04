@@ -16,18 +16,20 @@ import java.util.Set;
 	@NamedQuery(name = "EventCause.findEventIDAndCauseCode", query = "select o from EventCause o where o.eventID=:eventID and o.causeCode=:causeCode")
 })
 @Entity
+@Table(name="EventCause")
 @XmlRootElement
 public class EventCause implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int eventcauseCode;
-
+	@Column
 	private int causeCode;
-
+	@Column
 	private String causeDescription;
-
+	@Column
 	private int eventID;
 
 	//bi-directional many-to-one association to Basedata

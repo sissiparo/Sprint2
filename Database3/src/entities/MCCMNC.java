@@ -14,19 +14,22 @@ import java.util.Set;
 @NamedQueries({
 	@NamedQuery(name = "MCCMNC.findAll", query = "select o from MCCMNC o"),
 	@NamedQuery(name = "MCCMNC.findMCCMNCById", query = "select o from MCCMNC o where o.mccmncID=:mccmncID"),
-	@NamedQuery(name = "MCCMNC.findMCCMNCByName", query = "select o from MCCMNC o where o.mnc=:mnc") })
+	@NamedQuery(name = "MCCMNC.findMCCMNCByName", query = "select o from MCCMNC o where o.mnc=:mnc"),
+	@NamedQuery(name = "MCCMNC.findMCCMNCByMCCMNC", query = "select o from MCCMNC o where o.mnc=:mnc and o.country.mcc=:mcc")})
 
 @Entity
+@Table(name="MCCMNC")
 @XmlRootElement
 public class MCCMNC implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int mccmncID;
-
+	@Column
 	private int mnc;
-
+	@Column
 	private String operator;
 
 	//bi-directional many-to-one association to Basedata

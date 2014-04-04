@@ -13,18 +13,19 @@ import java.util.Set;
  */
 
 @NamedQuery(name = "Country.findByMCC", query = "select o from Country o where o.mcc=:mcc")
-
 //@NamedQueries({
 //		@NamedQuery(name = "Country.findByMCC", query = "select o from Country o where o.mcc=:mcc"),
 //		@NamedQuery(name = "Country.countOfMCC", query = "select count(mcc) from Country"), })
 @Entity
+@Table (name="Country")
 @XmlRootElement
 public class Country implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column
 	private int mcc;
-
+	@Column
 	private String countryName;
 
 	//bi-directional many-to-one association to Mccmnc

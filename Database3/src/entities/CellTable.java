@@ -16,18 +16,20 @@ import java.util.Set;
 	@NamedQuery(name = "CellTable.findByCellID", query = "select o from CellTable o where o.cellID=:cellID"),
  })
 @Entity
+@Table(name="CellTable") 
 @XmlRootElement
 @XmlTransient
 public class CellTable implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column
 	private int cellID;
-
+	@Column
 	private String hier3_ID;
-
+	@Column
 	private String hier32_ID;
-
+	@Column
 	private String hier321_ID;
 
 	//bi-directional many-to-one association to Basedata
