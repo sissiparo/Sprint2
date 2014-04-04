@@ -25,6 +25,9 @@ public class BaseDataWS {
 
     @EJB
     private BaseDataDAO baseDataDao;
+    
+     @PersistenceContext
+    private EntityManager em;
 
     @GET
     @Path("/{baseDataID}")
