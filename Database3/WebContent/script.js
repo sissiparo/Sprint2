@@ -269,10 +269,9 @@ function userStory10() {
 	$
 	.ajax({
 		type : "GET",
-		url : "http://localhost:8080/Database3/rest/basedata/userStory7/"
+		url : "http://localhost:8080/Database3/rest/basedata/userStory10/"
 			+ 
-			document.getElementById('startDate7').value + "/" +
-			document.getElementById('endDate7').value,
+			document.getElementById('tac10').value,
 
 			dataType : 'json',
 			headers : {
@@ -285,22 +284,22 @@ function userStory10() {
 				tblBody = document.createElement("tbody");
 				$(tblBody)
 				.append(
-						'<tr class="child"><td>date</td><td>imsi</td></tr>');
+						'<tr class="child"><td>EventID</td><td>CauseCode</td><td>Description</td><td>#Ocurrences</td></tr>');
 				for (var i = 0; i < resp.length; i++) {
 					$(tblBody).append(
 							'<tr class="child"><td>' + resp[i][0]
-
 							+ '</td><td>' + resp[i][1]
-
+							+ '</td><td>' + resp[i][2]
+							+ '</td><td>' + resp[i][3]
 							+ '</td></tr>');
 				}
 				$(tbl).append(tblBody);
-				$("#results7").append(tbl);
+				$("#results10").append(tbl);
 				tbl.setAttribute("align", "center");
-				tbl.setAttribute("id", "table7");
+				tbl.setAttribute("id", "table10");
 				tbl.setAttribute("class", "table");
-				$('#startDate7').val('');
-				$('#endDate7').val('');
+				//$('#tac10').val('');
+				
 			},
 			error : function(e) {
 				alert("Invalid or insufficient data - " + e);

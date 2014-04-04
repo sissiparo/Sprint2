@@ -270,7 +270,7 @@ public List<BaseData> userStory8(String tac, String startDate, String endDate){
 		return listOfBaseData;
  }*/
 
-public List<BaseData> userStory10(String TAC){
+public List<BaseData> userStory10(String tac){
 		
 		//TRYING SOMETHING HERE
 		/*String quer = "Select eventcause.eventID as 'Event ID', eventcause.causeCode as 'Cause Code', "
@@ -278,8 +278,8 @@ public List<BaseData> userStory10(String TAC){
 				+ "from eventcause, (Select eventCauseID, count(*) as count from BaseData "
 				+ "where TAC = '" + TAC + "' Group by eventCauseID Order by count DESC)"
 				+ "as reducedTable where eventcause.eventcauseCode = reducedTable.eventCauseID;";*/
-		String quer = "Select baseDate, imsi from BaseData";
-		Query q = em.createQuery("Select baseDate, imsi from BaseData;");
+		//String quer = "Select baseDate, imsi from BaseData";
+		Query q = em.createQuery("Select baseDate, imsi from BaseData where TAC=" + tac);
 		List<BaseData> listOfBaseData = q.getResultList();
 		
 		//ArrayList<BaseData> listOfBaseData = new ArrayList<BaseData>();
