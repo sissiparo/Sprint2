@@ -5,9 +5,10 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="script.js"></script>
 <title>Queries page</title>
 </head>
-<body>
+<body onload="customerServiceRepLevel()">
 
 	<table width=100% height=570px>
 		<tr ALIGN="CENTER">

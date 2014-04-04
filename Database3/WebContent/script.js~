@@ -549,90 +549,38 @@ function populateFailuresDDL() {
 
 
 function ericsson() {
-	document.getElementById('bdyleft').style.display = 'none';
-	document.getElementById('bdyright').style.display = 'none';
-	document.getElementById('bdy').style.display = 'block';
 	document.getElementById('bdy').src = 'http://www.ericsson.com/';
 };
 
 function queries() {
-	document.getElementById('bdyleft').style.display = 'none';
-	document.getElementById('bdyright').style.display = 'none';
-	document.getElementById('bdy').style.display = 'block';
-	if (localStorage.getItem('userLevel') === "Customer Service Rep") {
+	if(localStorage.getItem('userLevel') === "Customer Service Rep" ){
+		alert("csr");
 		document.getElementById('bdy').src = 'CustRepqueries.jsp';
-	} else if (localStorage.getItem('userLevel') === "Support Engineer") {
+	}
+	else if(localStorage.getItem( 'userLevel' ) === "Support Engineer"){
+		alert("se");
 		document.getElementById('bdy').src = 'SupEngqueries.jsp';
-	} else if (localStorage.getItem('userLevel') === "Network Management Engineer") {
+	}
+	else if(localStorage.getItem( 'userLevel' ) === "Network Management Engineer"){
+		alert("nme");
 		document.getElementById('bdy').src = 'NetManqueries.jsp';
-	} else if (localStorage.getItem('userLevel') === "System Administrator") {
+	}
+	else if(localStorage.getItem( 'userLevel' ) === "System Administrator"){
+		alert(localStorage.getItem( 'userLevel' ));
 		document.getElementById('bdy').src = 'SysAdminqueries.jsp';
 	}
 
 };
-
-function comboQueries() {
-	document.getElementById('bdy').style.display = 'none';
-	document.getElementById('bdyleft').style.display = 'block';
-	document.getElementById('bdyright').style.display = 'block';
-	if (localStorage.getItem('userLevel') === "Customer Service Rep") {
-		document.getElementById('bdyleft').src = 'CustRepqueries.jsp';
-		document.getElementById('bdyright').src = 'CustRepqueries.jsp';
-	} else if (localStorage.getItem('userLevel') === "Support Engineer") {
-		document.getElementById('bdyleft').src = 'SupEngqueries.jsp';
-		document.getElementById('bdyright').src = 'SupEngqueries.jsp';
-	} else if (localStorage.getItem('userLevel') === "Network Management Engineer") {
-		document.getElementById('bdyleft').src = 'NetManqueries.jsp';
-		document.getElementById('bdyright').src = 'NetManqueries.jsp';
-	} else if (localStorage.getItem('userLevel') === "System Administrator") {
-		document.getElementById('bdyleft').src = 'SysAdminqueries.jsp';
-		document.getElementById('bdyright').src = 'SysAdminqueries.jsp';
-	}
-}
 
 function combo() {
 	document.getElementById('bdy').src = 'UserStory4.html';
 };
 
 function onload() {
-	alert(localStorage.getItem('userLevel'));
+	alert(localStorage.getItem( 'userLevel' ));
 };
 
-function logout() {
+window.onunload = function(){
 	localStorage.clear();
-	window.location.href = 'index.html';
-}
-
-function clearUsers() {
-	localStorage.clear();
+	alert("Are you sure?");
 };
-
-function customerServiceRepLevel() {
-	if (localStorage.getItem('userLevel') !== "System Administrator"
-			&& localStorage.getItem('userLevel') !== "Network Management Engineer"
-			&& localStorage.getItem('userLevel') !== "Support Engineer"
-				&& localStorage.getItem('userLevel') !== "Customer Service Rep") {
-		window.location.href = 'accessError.html';
-	}
-}
-
-function supportEngineerLevel() {
-	if (localStorage.getItem('userLevel') !== "System Administrator"
-			&& localStorage.getItem('userLevel') !== "Network Management Engineer"
-			&& localStorage.getItem('userLevel') !== "Support Engineer") {
-		window.location.href = 'accessError.html';
-	}
-}
-
-function networkManagementEngineerLevel() {
-	if (localStorage.getItem('userLevel') !== "System Administrator"
-			&& localStorage.getItem('userLevel') !== "Network Management Engineer") {
-		window.location.href = 'accessError.html';
-	}
-}
-
-function adminLevel() {
-	if (localStorage.getItem('userLevel') !== "System Administrator") {
-		window.location.href = 'accessError.html';
-	}
-}

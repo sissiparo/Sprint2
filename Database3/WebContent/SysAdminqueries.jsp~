@@ -5,128 +5,121 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
-<script type="text/javascript" src="script.js"></script> 
 <title>Queries page</title>
 </head>
-<body onload="networkManagementEngineerLevel()">
+<body>
 
 	<table width=100% height=570px>
-		<tr ALIGN="CENTER">
+		<tr ALIGN="CENTER" class="page">
 			<td>
 				<div class="button">
 					<span class="main blue"><a href="UserStory4.html">US4-event
-							id/cause code</a></span> <span class="bottom green"><a href="#">EventID/Cause
+							id/cause code</a></span> <!--  <span class="bottom green"><a href="#">EventID/Cause
 							Codes for given IMSI</a></span> <span class="top green"><a href="#">Customer
-							service rep</a></span>
-				</div>
-				<br>
+							service rep</a></span>-->
+				</div> <br>
 			</td>
 
 			<td>
 				<div class="button">
 					<span class="main blue"><a href="UserStory5.html">US5-Failure
-							count by imsi</a></span> <span class="bottom green"><a href="#">Failures
+							count by imsi</a></span><!-- <span class="bottom green"><a href="#">Failures
 							for imsi over period</a></span> <span class="top green"><a href="#">Customer
-							service rep</a></span>
-				</div>
-				<br>
+							service rep</a></span> -->
+				</div> <br>
 			</td>
 
 			<td>
 				<div class="button">
 					<span class="main blue"><a href="UserStory6.html">US6-Cause
-							codes</a></span> <span class="bottom green"><a href="#">Unique
+							codes</a></span> <!--<span class="bottom green"><a href="#">Unique
 							cause codes for given imsi</a></span> <span class="top green"><a
-						href="#">Customer service rep</a></span>
-				</div>
-				<br>
+						href="#">Customer service rep</a></span>-->
+				</div> <br>
 			</td>
 		</tr>
 		<tr ALIGN="CENTER">
 			<td>
 				<div class="button">
 					<span class="main blue"><a href="UserStory7.html">US7-Imsi
-							failures</a></span> <span class="bottom orange"><a href="#">IMSIs
+							failures</a></span> <!--<span class="bottom orange"><a href="#">IMSIs
 							with call failures over period</a></span> <span class="top orange"><a
-						href="#">Support Engineer</a></span>
-				</div>
-				<br>
+						href="#">Support Engineer</a></span>-->
+				</div> <br>
 			</td>
 			<td>
 				<div class="button">
 					<span class="main blue"><a href="UserStory8.jsp">US8-Failures
-							for model</a></span> <span class="bottom orange"><a href="#">Failures
+							for model</a></span> <!--<span class="bottom orange"><a href="#">Failures
 							for given model over period</a></span> <span class="top orange"><a
-						href="#">Support Engineer</a></span>
-				</div>
-				<br>
+						href="#">Support Engineer</a></span>-->
+				</div> <br>
 			</td>
 			<td>
 				<div class="button">
 					<span class="main blue"><a href="UserStory9.html">US9-Failure
-							count/duration</a></span> <span class="bottom red"><a href="#">Count
+							count/duration</a></span> <!--<span class="bottom red"><a href="#">Count
 							and duration for imsi over period</a></span> <span class="top red"><a
-						href="#">Network Management Engineer </a></span>
-				</div>
-				<br>
+						href="#">Network Management Engineer </a></span>-->
+				</div> <br>
 			</td>
 		</tr>
 		<tr ALIGN="CENTER">
 			<td>
 				<div class="button">
 					<span class="main blue"><a
-						href="UserStory10.html">US10-Failure count for
-							model</a></span> <span class="bottom red"><a href="#">Failures
-							for model over period</a></span> <span class="top red"><a href="#">Network
-							Management Engineer </a></span>
-				</div>
-				<br>
+						href="UserStory10.html">US10-Failure count model</a></span><!-- <span
+						class="bottom red"><a href="#">Failures for model over
+							period</a></span> <span class="top red"><a href="#">Network
+							Management Engineer </a></span>-->
+				</div> <br>
 			</td>
 			<td>
 				<div class="button">
 					<span class="main blue"><a
-						href="UserStory11.html">US11-Top 10 IMSI/Operator</a></span> <span
+						href="UserStory11.html">US11-Top 10 IMSI/Operator</a></span><!-- <span
 						class="bottom red"><a href="#">Top call failure
 							combinations over period</a></span> <span class="top red"><a href="#">Network
-							Management Engineer </a></span>
-				</div>
-				<br>
+							Management Engineer </a></span>-->
+				</div> <br>
 			</td>
 			<td>
 				<div class="button">
 					<span class="main blue"><a
 						href="UserStory12.html">US12-Top 10 IMSI failures</a></span> <span
-						class="bottom red"><a href="#">Top imsis for call
+						class="bottom red"> <!--<a href="#">Top imsis for call
 							failures over period</a></span> <span class="top red"><a href="#">Network
-							Management Engineer </a></span>
-				</div>
-				<br>
+							Management Engineer </a></span>-->
+				</div> <br>
 			</td>
 		</tr>
 		<tr ALIGN="CENTER">
 			<td>
 				<div class="button">
 					<span class="main blue"><a
-						href="UserStory14.html">US14-imsis affected</a></span> <span
-						class="bottom orange"><a href="#">Display imsis affected by given cause class</a></span> <span
-						class="top orange"><a href="#">Support Engineer</a></span>
-				</div>
-				<br>
+						href="UserStory14.html">US14-imsis affected</a></span> <!--<span
+						class="bottom orange"><a href="#">Display imsis
+							affected by given cause class</a></span> <span class="top orange"><a
+						href="#">Support Engineer</a></span>-->
+				</div> <br>
 			</td>
 			<td>
 				<div class="button">
-					<span class="main grey"><a href=""></a></span>
-				</div>
-				<br>
+					<span class="main blue"><a
+						href="registration.html">Register</a></span> <!--<span
+						class="bottom black"><a href="#">Add new users</a></span> <span
+						class="top black"><a href="#">System Administrator</a></span>-->
+				</div> <br>
 			</td>
 			<td>
 				<div class="button">
-					<span class="main grey"><a href=""></a></span>
-				</div>
-				<br>
+					<span class="main blue"><a href="../queries/upload.jsp">Upload</a></span>
+					<!--<span class="bottom black"><a href="#">Upload data</a></span> <span
+						class="top black"><a href="#">System Administrator</a></span>
+				</div> <br>-->
 			</td>
 		</tr>
-	</TABLE>
+	</table>
 
 
 </body>

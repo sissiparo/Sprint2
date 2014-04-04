@@ -3,9 +3,8 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
-<script type="text/javascript" src="script.js"></script>
 </head>
-<body bgcolor="#00b7ea" onload="customerServiceRepLevel()">
+<body bgcolor="#00b7ea">
 	<table align="center" width=100%>
 		<tr ALIGN="CENTER" height=135px>
 			<td><input class='menubutton' id="button"
@@ -17,11 +16,11 @@
 		</tr>
 		<tr ALIGN="CENTER" height=135px>
 			<td><input class='menubutton' id="button"
-				type="button" value="Combo Queries" onclick="parent.comboQueries()" /></td>
+				type="button" value="Combo Queries" onclick="" /></td>
 		</tr>
 		<tr ALIGN="CENTER" height=135px>
 			<td><input class='menubutton' id="button"
-				type="button" value="Logout" onclick="parent.logout()" /></td>
+				type="button" value="Logout" onclick="" /></td>
 		</tr>
 	</table>
 </body>

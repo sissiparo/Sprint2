@@ -53,15 +53,14 @@
         };
 	</script>  
 </head>
-<body onload="clearUsers()">
-<br><br><br><br><br>
-	<table class="login textbox">
+<body onload="onload()">
+	<table align="center">
 		<tr>
-			<td><font>User Name:</font></td>
+			<td><font face="verdana" size="2px">User Name:</font></td>
 			<td><input type="text" name="txtUserName" id="txtUserName"></td>
 		</tr>
 		<tr>
-			<td><font>Password:</font></td>
+			<td><font face="verdana" size="2px">Password:</font></td>
 			<td><input type="text" name="txtPassword" id="txtPassword"></td>
 		</tr>
 

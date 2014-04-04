@@ -5,10 +5,9 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
-<script type="text/javascript" src="script.js"></script> 
 <title>Queries page</title>
 </head>
-<body onload="networkManagementEngineerLevel()">
+<body>
 
 	<table width=100% height=570px>
 		<tr ALIGN="CENTER">
@@ -45,28 +44,19 @@
 		<tr ALIGN="CENTER">
 			<td>
 				<div class="button">
-					<span class="main blue"><a href="UserStory7.html">US7-Imsi
-							failures</a></span> <span class="bottom orange"><a href="#">IMSIs
-							with call failures over period</a></span> <span class="top orange"><a
-						href="#">Support Engineer</a></span>
+					<span class="main grey"><a href=""></a></span>
 				</div>
 				<br>
 			</td>
 			<td>
 				<div class="button">
-					<span class="main blue"><a href="UserStory8.jsp">US8-Failures
-							for model</a></span> <span class="bottom orange"><a href="#">Failures
-							for given model over period</a></span> <span class="top orange"><a
-						href="#">Support Engineer</a></span>
+					<span class="main grey"><a href=""></a></span>
 				</div>
 				<br>
 			</td>
 			<td>
 				<div class="button">
-					<span class="main blue"><a href="UserStory9.html">US9-Failure
-							count/duration</a></span> <span class="bottom red"><a href="#">Count
-							and duration for imsi over period</a></span> <span class="top red"><a
-						href="#">Network Management Engineer </a></span>
+					<span class="main grey"><a href=""></a></span>
 				</div>
 				<br>
 			</td>
@@ -74,31 +64,19 @@
 		<tr ALIGN="CENTER">
 			<td>
 				<div class="button">
-					<span class="main blue"><a
-						href="UserStory10.html">US10-Failure count for
-							model</a></span> <span class="bottom red"><a href="#">Failures
-							for model over period</a></span> <span class="top red"><a href="#">Network
-							Management Engineer </a></span>
+					<span class="main grey"><a href=""></a></span>
 				</div>
 				<br>
 			</td>
 			<td>
 				<div class="button">
-					<span class="main blue"><a
-						href="UserStory11.html">US11-Top 10 IMSI/Operator</a></span> <span
-						class="bottom red"><a href="#">Top call failure
-							combinations over period</a></span> <span class="top red"><a href="#">Network
-							Management Engineer </a></span>
+					<span class="main grey"><a href=""></a></span>
 				</div>
 				<br>
 			</td>
 			<td>
 				<div class="button">
-					<span class="main blue"><a
-						href="UserStory12.html">US12-Top 10 IMSI failures</a></span> <span
-						class="bottom red"><a href="#">Top imsis for call
-							failures over period</a></span> <span class="top red"><a href="#">Network
-							Management Engineer </a></span>
+					<span class="main grey"><a href=""></a></span>
 				</div>
 				<br>
 			</td>
@@ -106,10 +84,7 @@
 		<tr ALIGN="CENTER">
 			<td>
 				<div class="button">
-					<span class="main blue"><a
-						href="UserStory14.html">US14-imsis affected</a></span> <span
-						class="bottom orange"><a href="#">Display imsis affected by given cause class</a></span> <span
-						class="top orange"><a href="#">Support Engineer</a></span>
+					<span class="main grey"><a href=""></a></span>
 				</div>
 				<br>
 			</td>
