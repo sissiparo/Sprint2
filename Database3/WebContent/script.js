@@ -17,12 +17,13 @@ function userStory4() {
 					tblBody = document.createElement("tbody");
 					$(tblBody)
 							.append(
-							'<tr class="child"><td>imsi</td><td>Event ID</td><td>Cause Code</td></tr>');
+							'<tr class="child"><td>Date</td><td>Event ID</td><td>Cause Code</td><td>Description</td></tr>');
 					for (var i = 0; i < resp.length; i++) {
 						$(tblBody).append(
-								'<tr class="child"><td>' + resp[i][0]
+								'<tr class="child"><td>' + convertLongToDate(resp[i][0])
 										+ '</td><td>' + resp[i][1]
 										+ '</td><td>' + resp[i][2]
+										+ '</td><td>' + resp[i][3]
 										+ '</td></tr>');
 					}
 					$(tbl).append(tblBody);

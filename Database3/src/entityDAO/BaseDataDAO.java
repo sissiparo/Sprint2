@@ -14,6 +14,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 
 import entities.BaseData;
+import entities.Failure;
 
 @Stateless
 @LocalBean
@@ -48,7 +49,7 @@ public class BaseDataDAO {
     }
     
     public List<BaseData> userStory4(String imsi){
-    	Query q = em.createQuery("select imsi, eventcause.eventID, eventcause.causeCode from BaseData"
+    	Query q = em.createQuery("select baseDate, eventcause.eventID, eventcause.causeCode, eventcause.causeDescription from BaseData"
     			+ " where imsi=" + imsi);
     	List<BaseData> listOfBaseData = q.getResultList();
 		return listOfBaseData;
