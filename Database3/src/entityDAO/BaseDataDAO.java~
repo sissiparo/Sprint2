@@ -16,6 +16,11 @@ import javax.persistence.TypedQuery;
 import entities.BaseData;
 import entities.Failure;
 
+import java.util.Calendar;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+
 @Stateless
 @LocalBean
 public class BaseDataDAO {

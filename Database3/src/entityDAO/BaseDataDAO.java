@@ -194,11 +194,50 @@ public List<BaseData> userStory8(String tac, String startDate, String endDate){
  }
 
 public List<BaseData> userStory10(String TAC){
-    	Query q = em.createQuery("SELECT b.eventCauseID as 'Cause Code', e.causeDescription as 'Cause Description',"
-    			+ " COUNT(*) AS 'total' FROM BaseData as b, EventCause as e, WHERE b.TAC= " + TAC + " Group by b.TAC, b.eventCauseID,"
-    			+ " Order by b.eventCauseID;");
-    	List<BaseData> listOfBaseData = q.getResultList();
+		
+		//TRYING SOMETHING HERE
+		/*String quer = "Select eventcause.eventID as 'Event ID', eventcause.causeCode as 'Cause Code', "
+				+"eventcause.causeDescription as Description, reducedTable.count as '#Occurences' "
+				+ "from eventcause, (Select eventCauseID, count(*) as count from BaseData "
+				+ "where TAC = '" + TAC + "' Group by eventCauseID Order by count DESC)"
+				+ "as reducedTable where eventcause.eventcauseCode = reducedTable.eventCauseID;";*/
+		String quer = "Select baseDate, imsi from BaseData";
+		Query q = em.createQuery("Select baseDate, imsi from BaseData;");
+		List<BaseData> listOfBaseData = q.getResultList();
+		
+		//ArrayList<BaseData> listOfBaseData = new ArrayList<BaseData>();
 		return listOfBaseData;
+	}
+
+public List<BaseData> userStory11(String startDate, String endDate){
+	       
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+       
+       
+        startDate=startDate.concat(" 00:00:00");
+        Calendar calStart=Calendar.getInstance();
+        try {
+            calStart.setTime(sdf.parse(startDate));
+        } catch (ParseException e) {
+            System.out.println("Start date not parsing with mins:"+startDate);
+            e.printStackTrace();
+        }
+       
+        endDate=endDate.concat(" 00:00:00");
+        System.out.println(endDate);
+        Calendar calEnd=Calendar.getInstance();
+        try {
+            calEnd.setTime(sdf.parse(endDate));
+        } catch (ParseException e) {
+            System.out.println("End date not parsing with mins:"+endDate);
+            e.printStackTrace();
+        }
+  
+        Query q = em.createQuery("select count(*) from BaseData where BaseDate >= :startDate and BaseDate <= :endDate")
+        .setParameter("startDate", calStart, TemporalType.DATE)
+        .setParameter("endDate", calEnd, TemporalType.DATE);
+        List<BaseData> listOfBaseData = q.getResultList();
+        return listOfBaseData;
     }
     
     public List<BaseData> userStory14(String failureClassID){

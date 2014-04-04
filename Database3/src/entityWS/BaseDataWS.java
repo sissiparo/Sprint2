@@ -77,6 +77,31 @@ public class BaseDataWS {
     public List<BaseData> userStory9(@PathParam("startDate") String startDate, @PathParam("endDate") String endDate) {
         return baseDataDao.userStory9(startDate, endDate);
     }
+
+ @GET
+    @Path("/userStory10/{TAC}")
+    @Produces("application/json")
+    public List<BaseData> userStory10(@PathParam("TAC") String TAC) {
+    	Query q = em.createQuery("Select baseDate, imsi from BaseData limit 10");
+		List<BaseData> listOfBaseData = q.getResultList();
+		return listOfBaseData;
+        //return baseDataDao.userStory10(TAC);
+    }
+    
+    @GET
+    @Path("/userStory11/{startDate}/{endDate}")
+    @Produces("application/json")
+    public List<BaseData> userStory11(@PathParam("startDate") String startDate,
+    		@PathParam("endDate") String endDate) {
+        return baseDataDao.userStory11(startDate, endDate);
+    }
+
+@GET
+    @Path("/userStory14/{failureClassID}")
+    @Produces("application/json")
+    public List<BaseData> userStory14(@PathParam("failureClassID") String failureClassID ) {
+        return baseDataDao.userStory14(failureClassID);
+    }
     
     @GET
     @Path("/all")
@@ -92,19 +117,7 @@ public class BaseDataWS {
         return baseDataDao.getImsiBaseData();
     }
     
-    @GET
-    @Path("/userStory10/{TAC}")
-    @Produces("application/json")
-    public List<BaseData> userStory10(@PathParam("TAC") String TAC) {
-        return baseDataDao.userStory10(TAC);
-    }
     
-    @GET
-    @Path("/userStory14/{failureClassID}")
-    @Produces("application/json")
-    public List<BaseData> userStory14(@PathParam("failureClassID") String failureClassID ) {
-        return baseDataDao.userStory14(failureClassID);
-    }
     //failureClasses()
     @GET
     @Path("/failureclasses")

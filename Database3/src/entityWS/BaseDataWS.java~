@@ -39,12 +39,12 @@ public class BaseDataWS {
     public List<BaseData> userStory4(@PathParam("imsi") String imsi) {
         return baseDataDao.userStory4(imsi);
     }
-    
-    @GET
+     
+      @GET
     @Path("/userStory5/{imsi}/{startDate}/{endDate}")
     @Produces("application/json")
     public List<BaseData> userStory5(@PathParam("imsi") String imsi, 
-    		@PathParam("startDate") Date startDate, @PathParam("endDate") Date endDate) {
+    		@PathParam("startDate") String startDate, @PathParam("endDate") String endDate) {
         return baseDataDao.userStory5(imsi, startDate, endDate);
     }
     
@@ -53,6 +53,29 @@ public class BaseDataWS {
     @Produces("application/json")
     public List<BaseData> userStory6(@PathParam("imsi") String imsi) {
         return baseDataDao.userStory6(imsi);
+    }
+    
+
+    @GET
+    @Path("/userStory7/{startDate}/{endDate}")
+    @Produces("application/json")
+    public List<BaseData> userStory7(@PathParam("startDate") String startDate, @PathParam("endDate") String endDate) {
+        return baseDataDao.userStory7(startDate, endDate);
+    }
+
+    @GET
+    @Path("/userStory8/{tac}/{startDate}/{endDate}")
+    @Produces("application/json")
+    public List<BaseData> userStory8(@PathParam("tac") String tac, 
+    		@PathParam("startDate") String startDate, @PathParam("endDate") String endDate) {
+        return baseDataDao.userStory8(tac, startDate, endDate);
+    }
+    
+    @GET
+    @Path("/userStory9/{startDate}/{endDate}")
+    @Produces("application/json")
+    public List<BaseData> userStory9(@PathParam("startDate") String startDate, @PathParam("endDate") String endDate) {
+        return baseDataDao.userStory9(startDate, endDate);
     }
     
     @GET
