@@ -12,7 +12,10 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
 import entities.BaseData;
 import entities.CellTable;
 import entities.Failure;
@@ -42,7 +45,11 @@ public class BaseDataWS {
     public List<BaseData> userStory4(@PathParam("imsi") String imsi) {
         return baseDataDao.userStory4(imsi);
     }
+//<<<<<<< HEAD
+    
+//=======
      
+//>>>>>>> 580bfc243d6b93925144a8d88b507a3d927ba200
       @GET
     @Path("/userStory5/{imsi}/{startDate}/{endDate}")
     @Produces("application/json")
@@ -62,7 +69,12 @@ public class BaseDataWS {
     @GET
     @Path("/userStory7/{startDate}/{endDate}")
     @Produces("application/json")
-    public List<BaseData> userStory7(@PathParam("startDate") String startDate, @PathParam("endDate") String endDate) {
+///<<<<<<< HEAD
+    //public List<BaseData> userStory7( 
+    //		@PathParam("startDate") Date startDate, @PathParam("endDate") Date endDate) {
+//=======
+   public List<BaseData> userStory7(@PathParam("startDate") String startDate, @PathParam("endDate") String endDate) {
+
         return baseDataDao.userStory7(startDate, endDate);
     }
 
@@ -81,6 +93,9 @@ public class BaseDataWS {
         return baseDataDao.userStory9(startDate, endDate);
     }
 
+//<<<<<<< HEAD
+
+//=======
  @GET
     @Path("/userStory10/{TAC}")
     @Produces("application/json")
@@ -106,6 +121,7 @@ public class BaseDataWS {
         return baseDataDao.userStory14(failureClassID);
     }
     
+//>>>>>>> 580bfc243d6b93925144a8d88b507a3d927ba200
     @GET
     @Path("/all")
     @Produces("application/json")
