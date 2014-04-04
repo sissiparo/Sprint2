@@ -40,6 +40,227 @@ function userStory4() {
 			});
 	return false;
 };
+
+function userStory5() {
+	body = document.getElementById("body5");
+	var tbl;
+	var tblBody;
+
+	$
+			.ajax({
+				type : "GET",
+				url : "http://localhost:8080/Database3/rest/basedata/userStory5/"
+						+ document.getElementById('imsi5').value + "/" +
+						document.getElementById('startDate5').value + "/" +
+						document.getElementById('endDate5').value,
+				dataType : 'json',
+				headers : {
+					Accept : "application/json",
+					"Access-Control-Allow-Origin" : "*",
+				},
+				success : function(resp) {
+					
+					tbl = document.createElement("table");
+					tblBody = document.createElement("tbody");
+					$(tblBody).append("<p>The Count of failures for IMSI "+ document.getElementById('imsi5').value +" is "+resp[0]+"</p>");
+					
+					$(tbl).append(tblBody);
+					$("#results5").append(tbl);
+					tbl.setAttribute("align", "center");
+					tbl.setAttribute("id", "table5");
+					tbl.setAttribute("class", "table");
+					$('#imsi5').val('');
+				},
+				error : function(e) {
+					alert("Invalid or insufficient data - " + e);
+				}
+			});
+	return false;
+};
+
+
+function userStory6() {
+	body = document.getElementById("body6");
+	var tbl;
+	var tblBody;
+	$
+			.ajax({
+				type : "GET",
+				url : "http://localhost:8080/Database3/rest/basedata/userStory6/"
+						+ document.getElementById('imsi6').value,
+				dataType : 'json',
+				headers : {
+					Accept : "application/json",
+					"Access-Control-Allow-Origin" : "*",
+				},
+				success : function(resp) {
+					tbl = document.createElement("table");
+					tblBody = document.createElement("tbody");
+					$(tblBody)
+							.append(
+							'<tr class="child"><td>imsi</td><td>Event ID</td><td>Event Cause Code</td><td>Cause Code</td><td>Cause Description</td></tr>');
+					for (var i = 0; i < resp.length; i++) {
+						$(tblBody).append(
+								'<tr class="child"><td>' + resp[i][0]
+								+ '</td><td>' + resp[i][1]
+								+ '</td><td>' + resp[i][2]
+								+ '</td><td>' + resp[i][3]
+								+ '</td><td>' + resp[i][4]
+								+ '</td></tr>');
+					}
+					$(tbl).append(tblBody);
+					$("#results6").append(tbl);
+					tbl.setAttribute("align", "center");
+					tbl.setAttribute("id", "table6");
+					tbl.setAttribute("class", "table");
+					$('#imsi6').val('');
+			
+				},
+				error : function(e) {
+					alert("Invalid or insufficient data - " + e);
+				}
+			});
+	return false;
+};
+
+function userStory7() {
+	body = document.getElementById("body7");
+	var tbl;
+	var tblBody;
+	$
+			.ajax({
+				type : "GET",
+				url : "http://localhost:8080/Database3/rest/basedata/userStory7/"
+					+ 
+					document.getElementById('startDate7').value + "/" +
+					document.getElementById('endDate7').value,
+						
+				dataType : 'json',
+				headers : {
+					Accept : "application/json",
+					"Access-Control-Allow-Origin" : "*",
+				},
+				success : function(resp) {
+				
+					tbl = document.createElement("table");
+					tblBody = document.createElement("tbody");
+					$(tblBody)
+							.append(
+							'<tr class="child"><td>date</td><td>imsi</td></tr>');
+					for (var i = 0; i < resp.length; i++) {
+						$(tblBody).append(
+								'<tr class="child"><td>' + resp[i][0]
+								
+								+ '</td><td>' + resp[i][1]
+								
+								+ '</td></tr>');
+					}
+					$(tbl).append(tblBody);
+					$("#results7").append(tbl);
+					tbl.setAttribute("align", "center");
+					tbl.setAttribute("id", "table7");
+					tbl.setAttribute("class", "table");
+					$('#startDate7').val('');
+					$('#endDate7').val('');
+				},
+				error : function(e) {
+					alert("Invalid or insufficient data - " + e);
+				}
+			});
+	return false;
+};
+
+
+function userStory8() {
+	body = document.getElementById("body8");
+	var tbl;
+	var tblBody;
+
+	$
+			.ajax({
+				type : "GET",
+				url : "http://localhost:8080/Database3/rest/basedata/userStory8/"
+						+ document.getElementById('tac8').value + "/" +
+						document.getElementById('startDate8').value + "/" +
+						document.getElementById('endDate8').value,
+				dataType : 'json',
+				headers : {
+					Accept : "application/json",
+					"Access-Control-Allow-Origin" : "*",
+				},
+				success : function(resp) {
+					
+					tbl = document.createElement("table");
+					tblBody = document.createElement("tbody");
+					$(tblBody).append("<p>The Count of failures for TAC "+document.getElementById('tac8').value+" is "+ resp[0]+".</p>");
+					
+					
+					$(tbl).append(tblBody);
+					$("#results8").append(tbl);
+					tbl.setAttribute("align", "center");
+					tbl.setAttribute("id", "table8");
+					tbl.setAttribute("class", "table");
+					$('#tac8').val('');
+				},
+				error : function(e) {
+					alert("Invalid or insufficient data - " + e);
+				}
+			});
+	return false;
+};
+
+
+function userStory9() {
+	body = document.getElementById("body9");
+	var tbl;
+	var tblBody;
+
+	$
+			.ajax({
+				type : "GET",
+				url : "http://localhost:8080/Database3/rest/basedata/userStory9/"
+						+ document.getElementById('startDate9').value + "/" +
+						document.getElementById('endDate9').value,
+				dataType : 'json',
+				headers : {
+					Accept : "application/json",
+					"Access-Control-Allow-Origin" : "*",
+				},
+				success : function(resp) {
+				alert("Count of first: "+resp[0][4]);
+					tbl = document.createElement("table");
+					tblBody = document.createElement("tbody");
+					$(tblBody)
+							.append(
+							'<tr class="child"><td>IMSI<td>TAC</td><td>MCC</td><td>MNC</td><td>Total Duration</td><td>Number of Failures</td></tr>');
+					for (var i = 0; i < resp.length; i++) {
+						$(tblBody).append(
+								'<tr class="child"><td>' + resp[i][0]
+										+ '</td><td>' + resp[i][1]
+										+ '</td><td>' + resp[i][2]
+										+ '</td><td>' + resp[i][3]
+										+ '</td><td>' + resp[i][4]
+										+ '</td><td>' + resp[i][5]
+										+ '</td></tr>');
+					}
+					$(tbl).append(tblBody);
+					
+					$("#results9").append(tbl);
+					tbl.setAttribute("align", "center");
+					tbl.setAttribute("id", "table9");
+					tbl.setAttribute("class", "table");
+					$('#tac9').val('');
+				},
+				error : function(e) {
+					alert("Invalid or insufficient data - " + e);
+				}
+			});
+	return false;
+};
+
+
+
+
 function userStory10() {
 	body = document.getElementById("body10");
 	var tbl;

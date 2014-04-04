@@ -15,6 +15,7 @@ import javax.ws.rs.Produces;
 
 import entities.BaseData;
 import entities.CellTable;
+import entities.Failure;
 import entityDAO.BaseDataDAO;
 
 @Path("/basedata")
@@ -66,6 +67,34 @@ public class BaseDataWS {
     @Produces("application/json")
     public List<BaseData> getImsiBaseData() {
         return baseDataDao.getImsiBaseData();
+    }
+    
+    @GET
+    @Path("/userStory10/{TAC}")
+    @Produces("application/json")
+    public List<BaseData> userStory10(@PathParam("TAC") String TAC) {
+        return baseDataDao.userStory10(TAC);
+    }
+    
+    @GET
+    @Path("/userStory14/{failureClassID}")
+    @Produces("application/json")
+    public List<BaseData> userStory14(@PathParam("failureClassID") String failureClassID ) {
+        return baseDataDao.userStory14(failureClassID);
+    }
+    //failureClasses()
+    @GET
+    @Path("/failureclasses")
+    @Produces("application/json")
+    public List<BaseData> failureClasses() {
+        return baseDataDao.failureClasses();
+    }
+    //rest/basedata/getFailures/
+    @GET
+    @Path("/getFailures/{unneededString}")
+    @Produces("application/json")
+    public List<Failure> getFailures(@PathParam("unneededString") String unneededString ) {
+        return baseDataDao.getFailures(unneededString);
     }
     
     @POST

@@ -1,0 +1,45 @@
+<html >
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" charset=utf-8" src="script.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" charset=utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body style="text-align:center;" id='body7'>
+	<p>List all IMSIs with call failures during the following time period</p>
+    <table width="700" cellspacing=0 border="0" cellpadding="0"
+			align="center" summary="">
+    	<tr>
+				<td>
+					<div>Start Date</div>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="text" name="startDate7" id="startDate7"
+					maxlength="25" size="25" value="2013-02-19"><a
+					href="javascript:NewCal('startDate','ddmmmyyyy',true,24)"><img
+						src="images/cal.gif" width="16" height="16" border="0"
+						alt="Pick a date"></a> <span class="descriptions"> Select
+						date..</span></td>
+			</tr><br>
+			<tr>
+				<td>
+					<div class="subtitle">End Date</div>
+
+				</td>
+			</tr>
+			<tr>
+				<td><input type="Text" name="endDate7" id="endDate7"
+					maxlength="25" size="25" value="2013-02-22"><a
+					href="javascript:NewCal('endDate','ddmmmyyyy',true,24)"><img
+						src="images/cal.gif" width="16" height="16" border="0"
+						alt="Pick a date"></a> <span class="descriptions"> Select
+						date..</span></td>
+			</tr>
+		</table>
+		<div style="text-align: center">
+			<input id="button7" type="button" value="submit" onclick="userStory7()" />
+		</div>
+		<br>
+		 <p id="results7">Results appended here: </p>
+</body>
