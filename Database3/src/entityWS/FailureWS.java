@@ -29,7 +29,7 @@ public class FailureWS {
     
     @GET
     @Path("/all")
-    public List<Failure> getAllFailure() {
+    public List<String> getAllFailure() {
         return failuresDao.getAllFailure();
     }
     

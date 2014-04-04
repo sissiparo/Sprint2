@@ -1,5 +1,6 @@
 package entityDAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -8,8 +9,10 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import entities.BaseData;
 import entities.Failure;
 
 @Stateless
@@ -23,10 +26,16 @@ public class FailureDAO {
         return em.find(Failure.class, failureID);
     }
     
-    public List<Failure> getAllFailure(){
-	    TypedQuery<Failure> q = em.createQuery("select o from Failure o", Failure.class);
-	    List<Failure> listOfFailure = q.getResultList();
-	    return listOfFailure;
+    public List<String> getAllFailure(){
+	    Query q = em.createQuery("select failureID from Failure");
+    	List<Failure> listOfFailure = q.getResultList();
+    	ArrayList<String> fids = new ArrayList<String>();
+    	for (Failure f:listOfFailure){
+    		//System.out.println("failuure:"+ f);
+    		fids.add(""+f.getFailureID());
+    	}
+		//return listOfFailure;
+    	return fids;
     }
     
     @TransactionAttribute(TransactionAttributeType.REQUIRED)

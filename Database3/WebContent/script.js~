@@ -17,14 +17,12 @@ function userStory4() {
 					tblBody = document.createElement("tbody");
 					$(tblBody)
 							.append(
-							'<tr class="child"><td>Date</td><td>imsi</td><td>Event ID</td><td>Cause Code</td><td>Cause Description</td></tr>');
+							'<tr class="child"><td>imsi</td><td>Event ID</td><td>Cause Code</td></tr>');
 					for (var i = 0; i < resp.length; i++) {
 						$(tblBody).append(
-								'<tr class="child"><td>' + resp[i][4]
-										+ '</td><td>' + resp[i][0]
+								'<tr class="child"><td>' + resp[i][0]
 										+ '</td><td>' + resp[i][1]
 										+ '</td><td>' + resp[i][2]
-										+ '</td><td>' + resp[i][3]
 										+ '</td></tr>');
 					}
 					$(tbl).append(tblBody);
@@ -131,12 +129,37 @@ function userStory6() {
 
 function ericsson() {
 	document.getElementById('bdy').src = 'http://www.ericsson.com/';
-}
+};
 
 function queries() {
-	document.getElementById('bdy').src = 'queries.jsp';
-}
+	if(localStorage.getItem('userLevel') === "Customer Service Rep" ){
+		alert("csr");
+		document.getElementById('bdy').src = 'queries4.jsp';
+	}
+	else if(localStorage.getItem( 'userLevel' ) === "Support Engineer"){
+		alert("se");
+		document.getElementById('bdy').src = 'queries3.jsp';
+	}
+	else if(localStorage.getItem( 'userLevel' ) === "Network Management Engineer"){
+		alert("nme");
+		document.getElementById('bdy').src = 'queries2.jsp';
+	}
+	else if(localStorage.getItem( 'userLevel' ) === "System Administrator"){
+		alert(localStorage.getItem( 'userLevel' ));
+		document.getElementById('bdy').src = 'queries.jsp';
+	}
+	
+};
 
 function combo() {
 	document.getElementById('bdy').src = 'UserStory4.html';
-}
+};
+
+function onload() {
+	alert(localStorage.getItem( 'userLevel' ));
+    };
+    
+window.onunload = function(){
+	localStorage.clear();
+    alert("Are you sure?");
+};
