@@ -355,19 +355,19 @@ function ericsson() {
 function queries() {
 	if(localStorage.getItem('userLevel') === "Customer Service Rep" ){
 		alert("csr");
-		document.getElementById('bdy').src = 'queries4.jsp';
+		document.getElementById('bdy').src = 'CustRepqueries.jsp';
 	}
 	else if(localStorage.getItem( 'userLevel' ) === "Support Engineer"){
 		alert("se");
-		document.getElementById('bdy').src = 'queries3.jsp';
+		document.getElementById('bdy').src = 'SupEngqueries.jsp';
 	}
 	else if(localStorage.getItem( 'userLevel' ) === "Network Management Engineer"){
 		alert("nme");
-		document.getElementById('bdy').src = 'queries2.jsp';
+		document.getElementById('bdy').src = 'NetManqueries.jsp';
 	}
 	else if(localStorage.getItem( 'userLevel' ) === "System Administrator"){
 		alert(localStorage.getItem( 'userLevel' ));
-		document.getElementById('bdy').src = 'queries.jsp';
+		document.getElementById('bdy').src = 'SysAdminqueries.jsp';
 	}
 	
 };
