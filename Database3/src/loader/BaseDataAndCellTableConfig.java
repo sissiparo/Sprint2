@@ -18,8 +18,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.transaction.UserTransaction;
-
 import entities.AccessCapability;
 import entities.BaseData;
 import entities.CellTable;
@@ -43,13 +41,14 @@ public class BaseDataAndCellTableConfig extends SuperConfig {
 			hier321_ID;
 	public BaseData baseData;
 	public CellTable cellTable;
-	public int eventCauseID, mccmncID;
+	public int eventCauseID;
 	public static ArrayList<Integer> invalidColumns = new ArrayList();
 
 	public EventCause eventcause;
 	public MCCMNC mccmnc;
 	public CellTable celltable;
 	public Failure failure;
+	public Country country;
 	public UserEquipment userequipment;
 	public List<BaseData> bds = new ArrayList<BaseData>();
 	public List<EventCause> eventC;
@@ -57,7 +56,7 @@ public class BaseDataAndCellTableConfig extends SuperConfig {
 	public List<CellTable> ctC;
 	public List<UserEquipment> ueC;
 	public List<Failure> failC;
-	
+	public List<Country> countryC;
 
 	SimpleDateFormat sdf = new SimpleDateFormat("");
 	static java.util.Date time = new java.util.Date();
@@ -67,140 +66,7 @@ public class BaseDataAndCellTableConfig extends SuperConfig {
 
 	}
 
-	public EventCause getEventCauseByID() {
-
-		for (EventCause ec : eventC) {
-			if (ec.getCauseCode() == Integer.parseInt(causeCode)
-					&& ec.getEventID() == Integer.parseInt(eventID)) {
-				return ec;
-			}
-
-		}
-
-		return null;
-
-	}
 	
-	public UserEquipment getUserEquipmentByID() {
-
-		for (UserEquipment uec : ueC) {
-			if (uec.getTac().equals(TAC)) {
-				return uec;
-			}
-
-		}
-
-		return null;
-
-	}
-	
-	public Failure getFailureByID() {
-
-		for (Failure fails : failC) {
-			if (fails.getFailureID() == Integer.parseInt(failureClassID)) {
-				return fails;
-			}
-
-		}
-
-		return null;
-
-	}
-	
-	public CellTable getCellTableByID() {
-
-		for (CellTable cellt : ctC) {
-			if (cellt.getCellID() == Integer.parseInt(cellID)) {
-				return cellt;
-			}
-
-		}
-
-		return null;
-
-	}
-
-	public MCCMNC getMCCMNCByID() {
-
-		for (MCCMNC mc : mcnC) {
-			if (mc.getCountry().getMcc() == Integer.parseInt(mccID)
-					&& mc.getMnc() == Integer.parseInt(mncID)) {
-				return mc;
-			}
-
-		}
-
-		return null;
-
-	}
-
-	public void getObjects() {
-
-		eventcause = getEventCauseByID();
-
-		// getEventCause(Integer.parseInt(eventID),
-		// Integer.parseInt(causeCode));
-
-		mccmnc = getMCCMNCByID();
-
-		// getMCCMNC(Integer.parseInt(mncID),
-		// em.find(Country.class, Integer.parseInt(mccID)));
-
-		celltable = getCellTableByID();
-				//em.find(CellTable.class, Integer.parseInt(cellID));
-
-		failure = getFailureByID();
-		//em.find(Failure.class, Integer.parseInt(failureClassID));
-
-		userequipment = getUserEquipmentByID();
-		//em.find(UserEquipment.class, TAC);
-		
-		
-
-		
-	}
-
-	public List<EventCause> getAllEventCause() {
-		Query q = em.createQuery("from EventCause");
-		List<EventCause> listOfEventCause = q.getResultList();
-		return listOfEventCause;
-	}
-	
-
-	public List<CellTable> getAllCellTable() {
-		Query q = em.createQuery("from CellTable");
-		List<CellTable> listOfCellTable = q.getResultList();
-		return listOfCellTable;
-	}
-	
-	public List<Failure> getAllFailure() {
-		Query q = em.createQuery("from Failure");
-		List<Failure> listOfFailure = q.getResultList();
-		return listOfFailure;
-	}
-	
-	public List<UserEquipment> getAllUserEquipment() {
-		Query q = em.createQuery("from UserEquipment");
-		List<UserEquipment> listOfUserEquipment = q.getResultList();
-		return listOfUserEquipment;
-	}
-
-	public List<MCCMNC> getAllMCCMNC() {
-		Query q = em.createQuery("from MCCMNC");
-		List<MCCMNC> listOfMCCMNC = q.getResultList();
-		return listOfMCCMNC;
-	}
-
-	public Country getCountry(int mcc) {
-		Query q = em.createQuery("select o from Country o where o.mcc=:mcc");
-		q.setParameter("mcc", mcc);
-		List<Country> listOfCountry = q.getResultList();
-		if (listOfCountry.size() == 0)
-			return null;
-		else
-			return listOfCountry.get(0);
-
-	}
 
 	@PersistenceContext
 	private EntityManager em;
@@ -213,7 +79,6 @@ public class BaseDataAndCellTableConfig extends SuperConfig {
 		ueC = getAllUserEquipment();
 		failC = getAllFailure();
 
-		
 		try {
 
 			Workbook workbook = WorkbookSingleton.getWorkbook(workbookFileName);
@@ -266,13 +131,6 @@ public class BaseDataAndCellTableConfig extends SuperConfig {
 								&& celltable != null && failure != null
 								&& userequipment != null) {
 
-							
-								mccmncID = getMCCMNC(
-										Integer.parseInt(mncID),
-										em.find(Country.class,
-												Integer.parseInt(mccID)))
-										.getMccmncID();
-							
 
 							try {
 
@@ -309,9 +167,6 @@ public class BaseDataAndCellTableConfig extends SuperConfig {
 
 	// @TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void addBaseDatas(List<BaseData> baseDatas) {
-		// UserTransaction transaction =
-		// transactionManagerSqlServer.getUserTransaction();
-		// em.getTransaction().begin();
 		int i = 0;
 		for (BaseData baseData : baseDatas) {
 
@@ -328,32 +183,114 @@ public class BaseDataAndCellTableConfig extends SuperConfig {
 
 	}
 
-	public EventCause getEventCause(int eventID, int causeCode) {
-		Query q = em
-				.createQuery("select o from EventCause o where o.eventID=:eventID and o.causeCode=:causeCode");
-		q.setParameter("eventID", eventID);
-		q.setParameter("causeCode", causeCode);
+	public EventCause getEventCauseByID() {
+
+		for (EventCause ec : eventC) {
+			if (ec.getCauseCode() == Integer.parseInt(causeCode)
+					&& ec.getEventID() == Integer.parseInt(eventID)) {
+				return ec;
+			}
+
+		}
+
+		return null;
+
+	}
+
+	public UserEquipment getUserEquipmentByID() {
+
+		for (UserEquipment uec : ueC) {
+			if (uec.getTac().equals(TAC)) {
+				return uec;
+			}
+
+		}
+
+		return null;
+
+	}
+
+	public Failure getFailureByID() {
+
+		for (Failure fails : failC) {
+			if (fails.getFailureID() == Integer.parseInt(failureClassID)) {
+				return fails;
+			}
+
+		}
+
+		return null;
+
+	}
+
+	public CellTable getCellTableByID() {
+
+		for (CellTable cellt : ctC) {
+			if (cellt.getCellID() == Integer.parseInt(cellID)) {
+				return cellt;
+			}
+
+		}
+
+		return null;
+
+	}
+
+	public MCCMNC getMCCMNCByID() {
+
+		for (MCCMNC mc : mcnC) {
+			if (mc.getCountry().getMcc() == Integer.parseInt(mccID)
+					&& mc.getMnc() == Integer.parseInt(mncID)) {
+				return mc;
+			}
+
+		}
+
+		return null;
+
+	}
+
+	public void getObjects() {
+
+		eventcause = getEventCauseByID();
+		mccmnc = getMCCMNCByID();
+		celltable = getCellTableByID();
+		failure = getFailureByID();
+		userequipment = getUserEquipmentByID();
+
+
+	}
+
+	public List<EventCause> getAllEventCause() {
+		Query q = em.createQuery("from EventCause");
 		List<EventCause> listOfEventCause = q.getResultList();
-		if (listOfEventCause.size() == 0)
-			return null;
-		else
-			return listOfEventCause.get(0);
-
+		return listOfEventCause;
 	}
 
-	public MCCMNC getMCCMNC(int mnc, Country country) {
-		Query q = em
-				.createQuery("select o from MCCMNC o where o.mnc=:mnc and o.country=:country");
-		q.setParameter("mnc", mnc);
-		q.setParameter("country", country);
+	public List<CellTable> getAllCellTable() {
+		Query q = em.createQuery("from CellTable");
+		List<CellTable> listOfCellTable = q.getResultList();
+		return listOfCellTable;
+	}
+
+	public List<Failure> getAllFailure() {
+		Query q = em.createQuery("from Failure");
+		List<Failure> listOfFailure = q.getResultList();
+		return listOfFailure;
+	}
+
+	public List<UserEquipment> getAllUserEquipment() {
+		Query q = em.createQuery("from UserEquipment");
+		List<UserEquipment> listOfUserEquipment = q.getResultList();
+		return listOfUserEquipment;
+	}
+
+	public List<MCCMNC> getAllMCCMNC() {
+		Query q = em.createQuery("from MCCMNC");
 		List<MCCMNC> listOfMCCMNC = q.getResultList();
-		if (listOfMCCMNC.size() == 0)
-			return null;
-		else
-			return listOfMCCMNC.get(0);
-
+		return listOfMCCMNC;
 	}
-
+	
 	public static java.sql.Timestamp parseDate(String dateSample)
 			throws ParseException {
 
@@ -450,90 +387,6 @@ public class BaseDataAndCellTableConfig extends SuperConfig {
 		return true;
 	}
 
-	// public static boolean checkMCCAndMNC(String mccColumnValue, String
-	// mncColumnValue) {
-	//
-	// if(PersistenceUtil.findCountry(Integer.parseInt(mccColumnValue))==null){
-	// invalidColumns.add(4);
-	// }
-	//
-	// if(PersistenceUtil.findMCCMNCByName(Integer.parseInt(mncColumnValue))!=null){
-	// return true;
-	// }else{
-	// invalidColumns.add(5);
-	// }
-	//
-	// System.out.println("Broke at MCC-MNC: "+mccColumnValue+" "+mncColumnValue);
-	// return false;
-	// }
-	//
-	// public static boolean checkTAC(String tacColumnValue) {
-	//
-	// if(PersistenceUtil.findTAC(tacColumnValue)!=null){
-	// return true;
-	// }else{
-	// invalidColumns.add(3);
-	// System.out.println("Broke at TAC: "+tacColumnValue);
-	// return false;
-	// }
-	// }
-	//
-	// public static boolean checkFailureClass(String failureClassColumnValue) {
-	// try{
-	// int failureClassAsInt=Integer.parseInt(failureClassColumnValue);
-	//
-	// if(PersistenceUtil.findFailureCode(failureClassAsInt)!=null){
-	//
-	// return true;
-	//
-	// }else{
-	// invalidColumns.add(2);
-	// System.out.println("Broke at Failure Class: "+ failureClassColumnValue);
-	// return false;
-	// }
-	// }catch(NumberFormatException e){
-	// invalidColumns.add(2);
-	// return false;
-	// }
-	// }
-	//
-	// public static boolean checkEventIdAndCauseCode(String eventIdColumnValue,
-	// String causeCodeColumnValue) {
-	//
-	// try{
-	// int eventIdAsInt=Integer.parseInt(eventIdColumnValue);
-	// int causeCodeAsInt=Integer.parseInt(causeCodeColumnValue);
-	//
-	// if(PersistenceUtil.findEventID(eventIdAsInt)==null){
-	//
-	// invalidColumns.add(1);
-	// }
-	// else{
-	//
-	// }
-	//
-	//
-	// if(PersistenceUtil.findEventIDAndCauseCode(eventIdAsInt,causeCodeAsInt)!=null){
-	//
-	// return true;
-	//
-	// }else{
-	// invalidColumns.add(8);
-	// return false;
-	// }
-	// }
-	// catch(NumberFormatException e){
-	// if(!eventIdColumnValue.matches("[0-9]+")){
-	// invalidColumns.add(1);
-	// }else{
-	// invalidColumns.add(8);
-	// }
-	// return false;
-	// }
-	// }
-	//
-	//
-
 	public static boolean checkDateFormat(String dateColumnValue) {
 
 		java.sql.Timestamp dateToCheck;
@@ -567,34 +420,5 @@ public class BaseDataAndCellTableConfig extends SuperConfig {
 					+ e.getMessage());
 		}
 	}
-
-	// public void storeData(){
-	//
-	//
-	// if(PersistenceUtil.findByCellID(Integer.parseInt(cellID))==null){
-	// cellTable = new CellTable(
-	// Integer.parseInt(cellID), hier3_ID,
-	// hier32_ID, hier321_ID);
-	// PersistenceUtil.persist(cellTable);}
-	// getObjects();
-	//
-	// try {
-	// baseData = new BaseData(eventcause,
-	// mccmnc, celltable,
-	// Integer.parseInt(duration), imsi,
-	// failure, userequipment, neVersion,
-	// parseDate(baseDate));
-	//
-	// PersistenceUtil.persist(baseData);
-	//
-	// } catch (NumberFormatException e) {
-	// System.out.println("Check has been performed already so should not throw");
-	// e.printStackTrace();
-	// } catch (ParseException e) {
-	// System.out.println("Check has been performed already so should not throw");
-	// e.printStackTrace();
-	// }
-	//
-	// }
 
 }
