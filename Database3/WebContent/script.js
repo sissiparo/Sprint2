@@ -324,33 +324,21 @@ function userStory11() {
 				"Access-Control-Allow-Origin" : "*",
 			},
 			success : function(resp) {
-				//USE THE FOLLOWING TO GIVE TABLES A HEADER DESCRIPTION INCLUDING THE INPUT DATA
-				explanationdiv=document.createElement("div");
-				explanationdiv.setAttribute("id", "explanation");
-				br=document.createElement("br");
-				explanationdiv.appendChild(br);
-				divcontents=document.createTextNode("\nThe results are ordered by IMSI and DATE for Cause Class: "
-						+ document.getElementById('failureClassID').value);
-				explanationdiv.appendChild(divcontents);
-				$("#results11").append(explanationdiv);
-				//USE THE ABOVE TO GIVE TABLES A HEADER DESCRIPTION INCLUDING THE INPUT DATA
-
 				tbl = document.createElement("table");
 				tblBody = document.createElement("tbody");
-				//DATE STILL RETURNED AS a Long
 				$(tblBody)
 				.append(
-				'<tr class="child"><td>Date</td><td>Imsi</td><td>Event ID</td><td>Description</td></tr>');
+						'<tr class="child"><td>MCC</td><td>MNC</td><td>Cell ID</td><td>Number Of Failures</td></tr>');
 				for (var i = 0; i < resp.length; i++) {
 					$(tblBody).append(
-							'<tr class="child"><td>' + convertLongToDate(resp[i][0])
+							'<tr class="child"><td>' + resp[i][0]
 							+ '</td><td>' + resp[i][1]
 							+ '</td><td>' + resp[i][2]
 							+ '</td><td>' + resp[i][3]
-							// + '</td><td>' + resp[i][4]
+							
+
 							+ '</td></tr>');
 				}
-				//$(tbl).text("");
 				$(tbl).append(tblBody);
 				$("#results11").append(tbl);
 				tbl.setAttribute("align", "center");
@@ -358,8 +346,9 @@ function userStory11() {
 				tbl.setAttribute("class", "table");
 				$('#startDate11').val('');
 				$('#endDate11').val('');
-				alert("story 11");
 			},
+				
+
 			error : function(e) {
 				alert("Please select an option ");
 			}
