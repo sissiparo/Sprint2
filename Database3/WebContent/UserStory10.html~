@@ -5,15 +5,9 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" charset="utf-8"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body style="text-align:center;" id='body10' onload="populateddl()">
-
-<p><font color="blue"> For the following model of phone,<br> 
-list all unique failure Event ID and Cause Code combinations,<br>
- as well as the number of occurrences</font><p>
- <br>
-   Enter TAC 
+<body style="text-align:center;" id='body10'>
+    Enter TAC 
     <input type="text" id="tac10" name="tac10" value="101500" />
-    <div id="myddl10"></div>
    <input id="button10" type="button" value="submit" onclick="userStory10()" />
     <p id="results10">results appended here:</p>
     

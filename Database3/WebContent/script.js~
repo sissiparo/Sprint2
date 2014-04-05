@@ -356,6 +356,53 @@ function userStory11() {
 	return false;
 };
 
+function userStory12() {
+	body = document.getElementById("body12");
+	var tbl;
+	var tblBody;
+	$
+	.ajax({
+		type : "GET",
+		url : "rest/basedata/userStory12/"
+			+document.getElementById('startDate12').value
+			+"/"+ document.getElementById('endDate12').value,
+			dataType : 'json',
+			headers : {
+				Accept : "application/json",
+				"Access-Control-Allow-Origin" : "*",
+			},
+			success : function(resp) {
+				tbl = document.createElement("table");
+				tblBody = document.createElement("tbody");
+				$(tblBody)
+				.append(
+						'<tr class="child"><td>IMSI</td><td>TAC</td><td>MCC</td><td>MNC</td><td>Number Of Failures</td></tr>');
+				for (var i = 0; i < 10; i++) {
+					$(tblBody).append(
+							'<tr class="child"><td>' + resp[i][0]
+							+ '</td><td>' + resp[i][1]
+							+ '</td><td>' + resp[i][2]
+							+ '</td><td>' + resp[i][3]
+							+ '</td><td>' + resp[i][4]
+							+ '</td></tr>');
+				}
+				$(tbl).append(tblBody);
+				$("#results12").append(tbl);
+				tbl.setAttribute("align", "center");
+				tbl.setAttribute("id", "table12");
+				tbl.setAttribute("class", "table");
+				$('#startDate12').val('');
+				$('#endDate12').val('');
+			},
+				
+
+			error : function(e) {
+				alert("Please select an option ");
+			}
+	});
+	return false;
+};
+
 function userStory14() {
 	body = document.getElementById("body14");
 	//mydiv = body.getElementById("explanation");

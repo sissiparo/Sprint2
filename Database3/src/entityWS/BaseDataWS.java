@@ -93,18 +93,20 @@ public class BaseDataWS {
         return baseDataDao.userStory9(startDate, endDate);
     }
 
-//<<<<<<< HEAD
 
-//=======
  @GET
     @Path("/userStory10/{tac}")
     @Produces("application/json")
     public List<BaseData> userStory10(@PathParam("tac") String TAC) {
-    	//Query q = em.createQuery("Select baseDate, imsi from BaseData limit 10");
-		//List<BaseData> listOfBaseData = q.getResultList();
-		//return listOfBaseData;
         return baseDataDao.userStory10(TAC);
     }
+    
+ @GET
+ @Path("/populateDdl")
+ @Produces("application/json")
+ public List<BaseData> populateDdl() {
+     return baseDataDao.populateDdl();
+ }
     
     @GET
     @Path("/userStory11/{startDate}/{endDate}")

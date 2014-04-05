@@ -318,6 +318,39 @@ public List<BaseData> userStory11(String startDate, String endDate){
         return listOfBaseData;
     }
     
+
+public List<BaseData> userStory12(String startDate, String endDate){
+    
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+   
+   
+    startDate=startDate.concat(" 00:00:00");
+    Calendar calStart=Calendar.getInstance();
+    try {
+        calStart.setTime(sdf.parse(startDate));
+    } catch (ParseException e) {
+        System.out.println("Start date not parsing with mins:"+startDate);
+        e.printStackTrace();
+    }
+   
+    endDate=endDate.concat(" 00:00:00");
+    System.out.println(endDate);
+    Calendar calEnd=Calendar.getInstance();
+    try {
+        calEnd.setTime(sdf.parse(endDate));
+    } catch (ParseException e) {
+        System.out.println("End date not parsing with mins:"+endDate);
+        e.printStackTrace();
+    }
+
+    
+    Query q = em.createQuery("SELECT imsi, userequipment.tac, mccmnc.country.mcc, mccmnc.mnc, count(*) as totalFailures from BaseData where BaseDate >= :startDate and BaseDate <= :endDate group by imsi order by totalFailures DESC")
+    .setParameter("startDate", calStart, TemporalType.DATE)
+    .setParameter("endDate", calEnd, TemporalType.DATE);
+    List<BaseData> listOfBaseData = q.getResultList();
+    return listOfBaseData;
+}
+
     public List<BaseData> userStory14(String failureClassID){
     	Query q = em.createQuery("SELECT baseDate, imsi, eventcause.eventID, eventcause.causeDescription from BaseData where failureClassID =" + Integer.parseInt(failureClassID) + " order by imsi,baseDate");
     	List<BaseData> listOfBaseData = q.getResultList();

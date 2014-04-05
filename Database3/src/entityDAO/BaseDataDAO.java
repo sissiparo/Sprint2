@@ -161,7 +161,6 @@ public class BaseDataDAO {
     	Query q = em.createQuery("SELECT baseDate,imsi FROM BaseData where BaseDate >= :startDate and BaseDate <= :endDate")
     	.setParameter("startDate", calStart, TemporalType.DATE)
         .setParameter("endDate", calEnd, TemporalType.DATE);
-//>>>>>>> 580bfc243d6b93925144a8d88b507a3d927ba200
     	List<BaseData> listOfBaseData = q.getResultList();
 		return listOfBaseData;
     }
@@ -193,7 +192,6 @@ public List<BaseData> userStory8(String tac, String startDate, String endDate){
     	Query q = em.createQuery("select count(*) from BaseData where BaseDate >= :startDate and BaseDate <= :endDate and TAC="+ tac)
     	.setParameter("startDate", calStart, TemporalType.DATE)
         .setParameter("endDate", calEnd, TemporalType.DATE);
-//<<<<<<< HEAD
     	List<BaseData> listOfBaseData = q.getResultList();
 		return listOfBaseData;
     }
@@ -233,8 +231,7 @@ public List<BaseData> userStory8(String tac, String startDate, String endDate){
     	Query q = em.createQuery("SELECT b.eventCauseID as 'Cause Code', e.causeDescription as 'Cause Description',"
     			+ " COUNT(*) AS 'total' FROM BaseData as b, EventCause as e, WHERE b.TAC= " + TAC + " Group by b.TAC, b.eventCauseID,"
     			+ " Order by b.eventCauseID;");
-//=======
-//>>>>>>> 580bfc243d6b93925144a8d88b507a3d927ba200
+
     	List<BaseData> listOfBaseData = q.getResultList();
 		return listOfBaseData;
     }
@@ -271,20 +268,21 @@ public List<BaseData> userStory8(String tac, String startDate, String endDate){
  }*/
 
 public List<BaseData> userStory10(String tac){
-		
-		//TRYING SOMETHING HERE
-		/*String quer = "Select eventcause.eventID as 'Event ID', eventcause.causeCode as 'Cause Code', "
-				+"eventcause.causeDescription as Description, reducedTable.count as '#Occurences' "
-				+ "from eventcause, (Select eventCauseID, count(*) as count from BaseData "
-				+ "where TAC = '" + TAC + "' Group by eventCauseID Order by count DESC)"
-				+ "as reducedTable where eventcause.eventcauseCode = reducedTable.eventCauseID;";*/
-		//String quer = "Select baseDate, imsi from BaseData";
-		Query q = em.createQuery("Select baseDate, imsi from BaseData where TAC=" + tac);
-		List<BaseData> listOfBaseData = q.getResultList();
-		
-		//ArrayList<BaseData> listOfBaseData = new ArrayList<BaseData>();
-		return listOfBaseData;
-	}
+	
+			Query q = em.createQuery("Select userequipment.tac, eventcause.eventID, eventcause.causeCode,"
+					+ " eventcause.causeDescription, count(*) "
+				+ "from BaseData where userequipment.tac= "+ tac+" group by eventcause.eventID, eventcause.causeCode");
+			List<BaseData> listOfBaseData = q.getResultList();
+			return listOfBaseData;
+		}
+
+
+public List<BaseData> populateDdl(){
+			
+			Query q = em.createQuery("Select userequipment.uemodel.modelName from BaseData");
+			List<BaseData> listOfBaseData = q.getResultList();
+			return listOfBaseData;
+		}
 
 public List<BaseData> userStory11(String startDate, String endDate){
 	       
