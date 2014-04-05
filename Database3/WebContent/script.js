@@ -287,10 +287,10 @@ function userStory10() {
 						'<tr class="child"><td>EventID</td><td>CauseCode</td><td>Description</td><td>#Ocurrences</td></tr>');
 				for (var i = 0; i < resp.length; i++) {
 					$(tblBody).append(
-							'<tr class="child"><td>' + resp[i][1]
+							'<tr class="child"><td>' + resp[i][0]
+							+ '</td><td>' + resp[i][1]
 							+ '</td><td>' + resp[i][2]
 							+ '</td><td>' + resp[i][3]
-							+ '</td><td>' + resp[i][4]
 							+ '</td></tr>');
 				}
 				$(tbl).append(tblBody);
@@ -308,45 +308,6 @@ function userStory10() {
 	return false;
 };
 
-function populateddl() {
-	ddl = document.getElementById("myddl10");
-
-
-	//var tbl;
-	//var tblBody;
-	var myselect;
-	$
-	.ajax({
-		type : "GET",
-		url : "http://localhost:8080/Database3/rest/basedata/populateDdl",
-
-			dataType : 'json',
-			headers : {
-				Accept : "application/json",
-				"Access-Control-Allow-Origin" : "*",
-			},
-			success : function(resp) {
-				myselect=document.createElement("select");
-				myselect.setAsetAttribute("id","myselect");
-				
-				 for ( var i = 0; i < resp.length; i++ ){
-				        var option_element = document.createElement('option');
-				        option_element.setAttribute('value', resp[i]);
-				        option_element.appendChild( document.createTextNode(  resp[i]) );
-				        //option_element.appendChild( document.createTextNode( "Option " + i ) );
-				        //if (i == 1){
-				        //    option_element.setAttribute("selected", "selected");
-				       // }
-				        myselect.appendChild(option_element);
-				    }
-
-				    $("#myddl10").append(myselect);
-				},
-			error : function(e) {
-				alert("Invalid or insufficient data - " + e);
-			}
-	});
-
 function userStory11() {
 	body = document.getElementById("body11");
 	var tbl;
@@ -363,19 +324,20 @@ function userStory11() {
 				"Access-Control-Allow-Origin" : "*",
 			},
 			success : function(resp) {
+
+
 				tbl = document.createElement("table");
 				tblBody = document.createElement("tbody");
+				
 				$(tblBody)
 				.append(
-						'<tr class="child"><td>MCC</td><td>MNC</td><td>Cell ID</td><td>Number Of Failures</td></tr>');
-				for (var i = 0; i < resp.length; i++) {
+				'<tr class="child"><td>MCC</td><td>MNC</td><td>Cell ID</td><td>Number Of Failures</td></tr>');
+				for (var i = 0; i < 10; i++) {
 					$(tblBody).append(
 							'<tr class="child"><td>' + resp[i][0]
 							+ '</td><td>' + resp[i][1]
 							+ '</td><td>' + resp[i][2]
 							+ '</td><td>' + resp[i][3]
-							
-
 							+ '</td></tr>');
 				}
 				$(tbl).append(tblBody);
@@ -386,8 +348,6 @@ function userStory11() {
 				$('#startDate11').val('');
 				$('#endDate11').val('');
 			},
-				
-
 			error : function(e) {
 				alert("Please select an option ");
 			}

@@ -93,15 +93,18 @@ public class BaseDataWS {
         return baseDataDao.userStory9(startDate, endDate);
     }
 
+//<<<<<<< HEAD
 
+//=======
  @GET
     @Path("/userStory10/{tac}")
     @Produces("application/json")
     public List<BaseData> userStory10(@PathParam("tac") String TAC) {
+
         return baseDataDao.userStory10(TAC);
     }
-    
- @GET
+
+@GET
  @Path("/populateDdl")
  @Produces("application/json")
  public List<BaseData> populateDdl() {
@@ -116,7 +119,6 @@ public class BaseDataWS {
         return baseDataDao.userStory11(startDate, endDate);
     }
 
-
  @GET
     @Path("/userStory12/{startDate}/{endDate}")
     @Produces("application/json")
@@ -124,8 +126,6 @@ public class BaseDataWS {
     		@PathParam("endDate") String endDate) {
         return baseDataDao.userStory12(startDate, endDate);
     }
-
-
 
 @GET
     @Path("/userStory14/{failureClassID}")

@@ -270,19 +270,12 @@ public List<BaseData> userStory8(String tac, String startDate, String endDate){
 		return listOfBaseData;
  }*/
 
-public List<BaseData> userStory10(String tac){
+ public List<BaseData> userStory10(String tac){
 		
-		//TRYING SOMETHING HERE
-		/*String quer = "Select eventcause.eventID as 'Event ID', eventcause.causeCode as 'Cause Code', "
-				+"eventcause.causeDescription as Description, reducedTable.count as '#Occurences' "
-				+ "from eventcause, (Select eventCauseID, count(*) as count from BaseData "
-				+ "where TAC = '" + TAC + "' Group by eventCauseID Order by count DESC)"
-				+ "as reducedTable where eventcause.eventcauseCode = reducedTable.eventCauseID;";*/
-		//String quer = "Select baseDate, imsi from BaseData";
-		Query q = em.createQuery("Select baseDate, imsi from BaseData where TAC=" + tac);
+		Query q = em.createQuery("Select userequipment.tac, eventcause.eventID, eventcause.causeCode,"
+				+ " eventcause.causeDescription, count(*) "
+			+ "from BaseData where userequipment.tac= "+ tac+" group by eventcause.eventID, eventcause.causeCode");
 		List<BaseData> listOfBaseData = q.getResultList();
-		
-		//ArrayList<BaseData> listOfBaseData = new ArrayList<BaseData>();
 		return listOfBaseData;
 	}
 
@@ -309,15 +302,13 @@ public List<BaseData> userStory11(String startDate, String endDate){
             System.out.println("End date not parsing with mins:"+endDate);
             e.printStackTrace();
         }
- 
-        
-        Query q = em.createQuery("SELECT mccmnc.country.mcc, mccmnc.mnc, celltable.cellID, count(*) as totalFailures from BaseData where BaseDate >= :startDate and BaseDate <= :endDate group by mccmnc.mccmncID, celltable.cellID order by totalFailures DESC")
+  
+        Query q = em.createQuery("select count(*) from BaseData where BaseDate >= :startDate and BaseDate <= :endDate")
         .setParameter("startDate", calStart, TemporalType.DATE)
         .setParameter("endDate", calEnd, TemporalType.DATE);
         List<BaseData> listOfBaseData = q.getResultList();
         return listOfBaseData;
     }
-    
 
 public List<BaseData> userStory12(String startDate, String endDate){
     
@@ -350,7 +341,7 @@ public List<BaseData> userStory12(String startDate, String endDate){
     List<BaseData> listOfBaseData = q.getResultList();
     return listOfBaseData;
 }
-
+    
     public List<BaseData> userStory14(String failureClassID){
     	Query q = em.createQuery("SELECT baseDate, imsi, eventcause.eventID, eventcause.causeDescription from BaseData where failureClassID =" + Integer.parseInt(failureClassID) + " order by imsi,baseDate");
     	List<BaseData> listOfBaseData = q.getResultList();

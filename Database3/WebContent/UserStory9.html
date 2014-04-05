@@ -4,8 +4,10 @@
 <head>
 <head>
 <meta charset="utf-8">
-<script type="text/javascript" charset=utf-8" src="script.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" charset=utf-8"></script>
+<script type="text/javascript" charset=utf-8 " src="script.js"></script>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+	charset=utf-8"></script>
 <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
 <!--  
 <script language="javascript" type="text/javascript"
@@ -20,54 +22,82 @@
 
 
 
-		<p>For a given time period display the IMSI which had failures associated with them</p>
+	<p>For a given time period display the IMSI which had failures
+		associated with them</p>
 
-		<table width="700" cellspacing=0 border="0" cellpadding="0"
-			align="center" summary="">
-			
-			<tr>
-				<td>
-					<div>Start Date</div>
+	<table width="700" cellspacing=0 border="0" cellpadding="0"
+		align="center" summary="">
 
-				</td>
-			</tr>
-			<tr>
-				<td><input type="text" name="startDate9" id="startDate9"
-					maxlength="25" size="25" value="2013-02-19"><a
-					href="javascript:NewCal('startDate9','ddmmmyyyy',true,24)"><img
-						src="images/cal.gif" width="16" height="16" border="0"
-						alt="Pick a date"></a> <span class="descriptions"> Select
-						date..</span></td>
-			</tr>
-			<br>
-			<tr>
-				<td>
-					<div class="subtitle">End Date</div>
+		<tr>
+			<td>
+				<div>Start Date</div>
 
-				</td>
-			</tr>
+			</td>
+		</tr>
+		<tr>
+			<td><input type="text" name="startDate9" id="startDate9"
+				maxlength="25" size="25" value="2013-02-19"><a
+				href="javascript:NewCal('startDate9','ddmmmyyyy',true,24)"><img
+					src="images/cal.gif" width="16" height="16" border="0"
+					alt="Pick a date"></a> <span class="descriptions"> Select
+					date..</span></td>
+					<td>
+					<select>
+			<option value="00:00:00">00:00</option>
+			<option value="01:00:00">01:00</option>
+			<option value="02:00:00">02:00</option>
+			<option value="03:00:00">03:00</option>
+			<option value="04:00:00">04:00</option>
+			<option value="05:00:00">05:00</option>
+			<option value="06:00:00">06:00</option>
+			<option value="07:00:00">07:00</option>
+			<option value="08:00:00">08:00</option>
+			<option value="09:00:00">09:00</option>
+			<option value="10:00:00">10:00</option>
+			<option value="11:00:00">11:00</option>
+			<option value="12:00:00">12:00</option>
+			<option value="13:00:00">13:00</option>
+			<option value="14:00:00">14:00</option>
+			<option value="15:00:00">15:00</option>
+			<option value="16:00:00">16:00</option>
+			<option value="17:00:00">17:00</option>
+			<option value="18:00:00">18:00</option>
+			<option value="19:00:00">19:00</option>
+			<option value="20:00:00">20:00</option>
+			<option value="21:00:00">21:00</option>
+			<option value="22:00:00">22:00</option>
+			<option value="23:00:00">23:00</option>
+		</select>
+					</td>
+		
+		<tr>
+			<td>
+				<div class="subtitle">End Date</div>
+
+			</td>
+
+		</tr>
+		<tr>
+			<td><input type="Text" name="endDate9" id="endDate9"
+				maxlength="25" size="25" value="2013-02-22"><a
+				href="javascript:NewCal('endDate9','ddmmmyyyy',true,24)"><img
+					src="images/cal.gif" width="16" height="16" border="0"
+					alt="Pick a date"></a> <span class="descriptions"> Select
+					date..</span></td>
+
+		</tr>
+
+	</table>
+	<div style="text-align: center">
+		<input id="button9" type="button" value="submit"
+			onclick="userStory9()" />
+	</div>
+	<br>
 
 
-			<tr>
-				<td><input type="Text" name="endDate9" id="endDate9"
-					maxlength="25" size="25" value="2013-02-22"><a
-					href="javascript:NewCal('endDate9','ddmmmyyyy',true,24)"><img
-						src="images/cal.gif" width="16" height="16" border="0"
-						alt="Pick a date"></a> <span class="descriptions"> Select
-						date..</span></td>
-			</tr>
 
 
-		</table>
-		<div style="text-align: center">
-			<input id="button9" type="button" value="submit" onclick="userStory9()" />
-		</div>
-		<br>
-
-
-	
-
-<p id="results9">results appended here: </p>
+	<p id="results9">results appended here:</p>
 
 </body>
 </html>

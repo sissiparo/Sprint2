@@ -72,17 +72,17 @@ public class LoaderWS {
     public void addAll() {
     	long startTime = System.nanoTime();
 
-//      config.addCountries();
-//      mccmncConfig.addMCCMNC();
-//      eventCauseConfig.addEventCause();
-//      failureConfig.addFailures();
-//      accConfig.addAccessCapability();
-//      manufacturerConfig.addManufacturer();
-//      ueacConfig.addUeAccessCapability();
-//      ueModelConfig.addUEModel();
-//      userEquipConfig.addUserEquipment();
-//      ctConfig.addBaseDataAndCellTableConfig();
-//      userConfig.addUsers();
+      config.addCountries();
+      mccmncConfig.addMCCMNC();
+      eventCauseConfig.addEventCause();
+      failureConfig.addFailures();
+      accConfig.addAccessCapability();
+      manufacturerConfig.addManufacturer();
+      ueacConfig.addUeAccessCapability();
+      ueModelConfig.addUEModel();
+      userEquipConfig.addUserEquipment();
+      ctConfig.addBaseDataAndCellTableConfig();
+      userConfig.addUsers();
       bdactConfig.addBaseDataAndCellTableConfig();
     	
         long endTime = System.nanoTime();

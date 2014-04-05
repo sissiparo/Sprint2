@@ -35,10 +35,12 @@
     function persist(){
     	var userName=document.getElementById("txtUserName").value;
     	var password=document.getElementById("txtPassword").value;
+    	var retypePassword=document.getElementById("txtPasswordRe").value;
     	var employeeNumber=document.getElementById("txtEmployeeNumber").value;
     	var firstName=document.getElementById("txtFirstName").value;
     	var lastName=document.getElementById("txtLastName").value;
     	var userType=document.getElementById("txtUserType").value;
+    	if(password === retypePassword){
         $.ajax({
             type: "POST",
             url: "http://localhost:8080/Database3/rest/user/" + userName 
@@ -55,6 +57,10 @@
                 alert("error: "+e);
             }
         });
+    	}
+    	else{
+			alert("Passwords must match");
+        	}
     };
 	</script>
 </head>
@@ -75,7 +81,11 @@
 					</tr>
 					<tr>
 						<td><font face="verdana" size="2px">Password:</font></td>
-						<td><input type="text" name="txtPassword" id="txtPassword"></td>
+						<td><input type="password" name="txtPassword" id="txtPassword"></td>
+					</tr>
+					<tr>
+						<td><font face="verdana" size="2px">Retype Password:</font></td>
+						<td><input type="password" name="txtPasswordRe" id="txtPasswordRe"></td>
 					</tr>
 					<tr>
 						<td><font face="verdana" size="2px">Employee Number:</font></td>

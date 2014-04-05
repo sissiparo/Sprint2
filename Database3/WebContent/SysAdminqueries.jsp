@@ -50,7 +50,7 @@
 			</td>
 			<td>
 				<div class="button">
-					<span class="main blue"><a href="UserStory8.jsp">US8-Failures
+					<span class="main blue"><a href="UserStory8.html">US8-Failures
 							for model</a></span> <!--<span class="bottom orange"><a href="#">Failures
 							for given model over period</a></span> <span class="top orange"><a
 						href="#">Support Engineer</a></span>-->
