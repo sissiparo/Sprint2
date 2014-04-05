@@ -6,9 +6,9 @@ CREATE SCHEMA IF NOT EXISTS `testdb` DEFAULT CHARACTER SET utf8 ;
 USE `testdb` ;
 
 -- -----------------------------------------------------
--- Table `testdb`.`accesscapability`
+-- Table `testdb`.`AccessCapability`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `testdb`.`accesscapability` (
+CREATE TABLE IF NOT EXISTS `testdb`.`AccessCapability` (
   `accessID` INT(11) NOT NULL AUTO_INCREMENT,
   `accessCapability` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`accessID`))
@@ -18,9 +18,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `testdb`.`manufacturer`
+-- Table `testdb`.`Manufacturer`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `testdb`.`manufacturer` (
+CREATE TABLE IF NOT EXISTS `testdb`.`Manufacturer` (
   `manufacturerID` INT(11) NOT NULL AUTO_INCREMENT,
   `manufacturerName` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`manufacturerID`))
@@ -30,9 +30,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `testdb`.`uemodel`
+-- Table `testdb`.`UEModel`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `testdb`.`uemodel` (
+CREATE TABLE IF NOT EXISTS `testdb`.`UEModel` (
   `modelId` INT(11) NOT NULL AUTO_INCREMENT,
   `modelName` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`modelId`))
@@ -42,9 +42,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `testdb`.`userequipment`
+-- Table `testdb`.`UserEquipment`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `testdb`.`userequipment` (
+CREATE TABLE IF NOT EXISTS `testdb`.`UserEquipment` (
   `tac` VARCHAR(255) NOT NULL,
   `ueInputMode` VARCHAR(255) NULL DEFAULT NULL,
   `ueOperatingSys` VARCHAR(255) NULL DEFAULT NULL,
@@ -59,15 +59,15 @@ CREATE TABLE IF NOT EXISTS `testdb`.`userequipment` (
     REFERENCES `testdb`.`manufacturer` (`manufacturerID`),
   CONSTRAINT `FKE4D75DE3AA0FCCE2`
     FOREIGN KEY (`ueModelId`)
-    REFERENCES `testdb`.`uemodel` (`modelId`))
+    REFERENCES `testdb`.`UEModel` (`modelId`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `testdb`.`eventcause`
+-- Table `testdb`.`EventCause`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `testdb`.`eventcause` (
+CREATE TABLE IF NOT EXISTS `testdb`.`EventCause` (
   `eventcauseCode` INT(11) NOT NULL AUTO_INCREMENT,
   `causeCode` INT(11) NOT NULL,
   `causeDescription` VARCHAR(255) NULL DEFAULT NULL,
@@ -81,7 +81,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `testdb`.`country`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `testdb`.`country` (
+CREATE TABLE IF NOT EXISTS `testdb`.`Country` (
   `mcc` INT(11) NOT NULL,
   `countryName` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`mcc`))
@@ -90,9 +90,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `testdb`.`mccmnc`
+-- Table `testdb`.`MCCMNC`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `testdb`.`mccmnc` (
+CREATE TABLE IF NOT EXISTS `testdb`.`MCCMNC` (
   `mccmncID` INT(11) NOT NULL AUTO_INCREMENT,
   `mnc` INT(11) NOT NULL,
   `operator` VARCHAR(255) NULL DEFAULT NULL,
@@ -101,16 +101,16 @@ CREATE TABLE IF NOT EXISTS `testdb`.`mccmnc` (
   INDEX `FK8734EE353380F5F8` (`mcc` ASC),
   CONSTRAINT `FK8734EE353380F5F8`
     FOREIGN KEY (`mcc`)
-    REFERENCES `testdb`.`country` (`mcc`))
+    REFERENCES `testdb`.`Country` (`mcc`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 42
 DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `testdb`.`failure`
+-- Table `testdb`.`Failure`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `testdb`.`failure` (
+CREATE TABLE IF NOT EXISTS `testdb`.`Failure` (
   `failureID` INT(11) NOT NULL,
   `failureDescription` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`failureID`))
@@ -119,9 +119,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `testdb`.`celltable`
+-- Table `testdb`.`CellTable`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `testdb`.`celltable` (
+CREATE TABLE IF NOT EXISTS `testdb`.`CellTable` (
   `cellID` INT(11) NOT NULL,
   `hier321_ID` VARCHAR(255) NULL DEFAULT NULL,
   `hier32_ID` VARCHAR(255) NULL DEFAULT NULL,
@@ -132,9 +132,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `testdb`.`basedata`
+-- Table `testdb`.`BaseData`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `testdb`.`basedata` (
+CREATE TABLE IF NOT EXISTS `testdb`.`BaseData` (
   `baseDataID` INT(11) NOT NULL AUTO_INCREMENT,
   `baseDate` DATETIME NULL DEFAULT NULL,
   `duration` INT(11) NOT NULL,
@@ -153,43 +153,43 @@ CREATE TABLE IF NOT EXISTS `testdb`.`basedata` (
   INDEX `FK9D36FE3BF862D1E` (`cellID` ASC),
   CONSTRAINT `FK9D36FE3B135732AE`
     FOREIGN KEY (`TAC`)
-    REFERENCES `testdb`.`userequipment` (`tac`),
+    REFERENCES `testdb`.`UserEquipment` (`tac`),
   CONSTRAINT `FK9D36FE3B368ED464`
     FOREIGN KEY (`eventCauseID`)
-    REFERENCES `testdb`.`eventcause` (`eventcauseCode`),
+    REFERENCES `testdb`.`EventCause` (`eventcauseCode`),
   CONSTRAINT `FK9D36FE3BC1D768B0`
     FOREIGN KEY (`mccmncID`)
-    REFERENCES `testdb`.`mccmnc` (`mccmncID`),
+    REFERENCES `testdb`.`MCCMNC` (`mccmncID`),
   CONSTRAINT `FK9D36FE3BEAC24228`
     FOREIGN KEY (`failureClassID`)
-    REFERENCES `testdb`.`failure` (`failureID`),
+    REFERENCES `testdb`.`Failure` (`failureID`),
   CONSTRAINT `FK9D36FE3BF862D1E`
     FOREIGN KEY (`cellID`)
-    REFERENCES `testdb`.`celltable` (`cellID`))
+    REFERENCES `testdb`.`CellTable` (`cellID`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 801
 DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `testdb`.`ue_accesscapability`
+-- Table `testdb`.`UE_Accesscapability`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `testdb`.`ue_accesscapability` (
+CREATE TABLE IF NOT EXISTS `testdb`.`UE_AccessCapability` (
   `accessCapabilityID` INT(11) NOT NULL,
   `userEquipID` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`accessCapabilityID`, `userEquipID`),
   INDEX `FK4EDFB34B19297BFE` (`accessCapabilityID` ASC),
   CONSTRAINT `FK4EDFB34B19297BFE`
     FOREIGN KEY (`accessCapabilityID`)
-    REFERENCES `testdb`.`accesscapability` (`accessID`))
+    REFERENCES `testdb`.`AccessCapability` (`accessID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `testdb`.`user`
+-- Table `testdb`.`User`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `testdb`.`user` (
+CREATE TABLE IF NOT EXISTS `testdb`.`User` (
   `userID` INT(11) NOT NULL AUTO_INCREMENT,
   `employeeNumber` VARCHAR(255) NULL DEFAULT NULL,
   `firstName` VARCHAR(255) NULL DEFAULT NULL,
