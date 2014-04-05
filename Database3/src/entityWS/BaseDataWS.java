@@ -115,6 +115,16 @@ public class BaseDataWS {
     }
 
 
+ @GET
+    @Path("/userStory12/{startDate}/{endDate}")
+    @Produces("application/json")
+    public List<BaseData> userStory12(@PathParam("startDate") String startDate,
+    		@PathParam("endDate") String endDate) {
+        return baseDataDao.userStory12(startDate, endDate);
+    }
+
+
+
 @GET
     @Path("/userStory14/{failureClassID}")
     @Produces("application/json")

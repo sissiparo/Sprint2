@@ -309,8 +309,9 @@ public List<BaseData> userStory11(String startDate, String endDate){
             System.out.println("End date not parsing with mins:"+endDate);
             e.printStackTrace();
         }
-  
-        Query q = em.createQuery("select count(*) from BaseData where BaseDate >= :startDate and BaseDate <= :endDate")
+ 
+        
+        Query q = em.createQuery("SELECT mccmnc.country.mcc, mccmnc.mnc, celltable.cellID, count(*) as totalFailures from BaseData where BaseDate >= :startDate and BaseDate <= :endDate group by mccmnc.mccmncID, celltable.cellID order by totalFailures DESC")
         .setParameter("startDate", calStart, TemporalType.DATE)
         .setParameter("endDate", calEnd, TemporalType.DATE);
         List<BaseData> listOfBaseData = q.getResultList();
