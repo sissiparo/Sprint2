@@ -1,0 +1,81 @@
+<!-- Group5- Ger Hennessy, Ian Murray, Paula Suciu, Muireann Walsh, Ronan Monahan, Fergal Byrne -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script>
+    function login(){
+    	var userName=document.getElementById("txtUserName").value;
+    	var password=document.getElementById("txtPassword").value;
+        $.ajax({
+            type: "GET",
+            url: "rest/user/" + userName + "/" + password,
+            dataType : 'json',
+            headers: {
+                "Access-Control-Allow-Origin": "*"
+            },
+            success: function(resp) {
+                
+            	if(typeof(Storage)!=="undefined")
+          	  {
+				if(resp.userType == "Customer Service Rep"){
+					localStorage.setItem('userLevel',"Customer Service Rep");
+					}
+				else if(resp.userType == "Support Engineer"){
+					localStorage.setItem('userLevel',"Support Engineer");
+					}
+				else if(resp.userType == "Network Management Engineer"){
+					localStorage.setItem('userLevel',"Network Management Engineer");
+					}
+				else{
+					localStorage.setItem('userLevel',"System Administrator");
+					}
+            	  }
+            	else
+            	  {
+            	  alert("Local storage not supported");
+            	  }
+       
+                window.location.href = 'main.html';
+            },
+            error: function(e) {
+            	var loginText = document.getElementById("loginText");
+				loginText.innerHTML="Incorrent username or password";
+                }
+        });
+        return false;
+    };
+
+
+	</script>  
+</head>
+<body onload="clearUsers()">
+<br><br><br><br><br>
+
+    <div class="container">
+        <div class="flat-form">         
+            <div id="login" class="form-action show">
+                <h1>Ericsson<br>Database</h1>
+                <div id='loginText'>
+                    Enter login information
+                </div>
+                <form onsubmit="return login()" method="post">
+                    <ul>
+                            <input type="text" id="txtUserName" placeholder="Username" />
+                        
+                        
+                            <input type="password" id="txtPassword" placeholder="Password" />
+                        
+                            <input type="submit" value="Login" class="loginButton" />
+                      
+                    </ul>
+                </form>
+            </div>
+           </div> 
+</body>
+</html>
+
+
+

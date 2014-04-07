@@ -1,0 +1,116 @@
+<!-- Group5- Ger Hennessy, Ian Murray, Paula Suciu, Muireann Walsh, Ronan Monahan, Fergal Byrne -->
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" charset="utf-8" src="../script.js"></script>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+	charset="utf-8"></script>
+<script src="http://code.jquery.com/jquery-1.6.3.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<link rel="stylesheet" type="text/css" href="../style.css">
+<script language="javascript" type="text/javascript"
+	src="../datetimepicker.js"></script>
+	<script type="text/javascript" charset=utf-8" src="../datetimepicker.js"></script>
+</head>
+<body style="text-align: center;" id='body12' onload='networkManagementEngineerLevel()'>
+	<p class="header red"><br>
+		US 12 - Display the Top 10 IMSIs with failures for a
+			certain Time Period 
+	</p>
+
+	<table width="700" cellspacing=0 border="0" cellpadding="0"
+		align="center" summary="">
+		<tr>
+			<td>
+				<div>Start Date</div>
+			</td>
+		</tr>
+		<tr>
+			<td><input type="text" name="startDate12" id="startDate12"
+				maxlength="25" size="25" value="2013-02-19"> <a
+				href="javascript:NewCal('startDate12','ddmmmyyyy',true,24)"> <img
+					src="../images/cal.gif" width="16" height="16" border="0"
+					alt="Pick a date">
+			</a> <span class="descriptions"> Select date..> </span><br> <select id='startTime12'>
+					<option value="00:00:00">00:00:00</option>
+					<option value="01:00:00">01:00:00</option>
+					<option value="02:00:00">02:00:00</option>
+					<option value="03:00:00">03:00:00</option>
+					<option value="04:00:00">04:00:00</option>
+					<option value="05:00:00">05:00:00</option>
+					<option value="06:00:00">06:00:00</option>
+					<option value="07:00:00">07:00:00</option>
+					<option value="08:00:00">08:00:00</option>
+					<option value="09:00:00">09:00:00</option>
+					<option value="10:00:00">10:00:00</option>
+					<option value="11:00:00">11:00:00</option>
+					<option value="12:00:00">12:00:00</option>
+					<option value="13:00:00">13:00:00</option>
+					<option value="14:00:00">14:00:00</option>
+					<option value="15:00:00">15:00:00</option>
+					<option value="16:00:00">16:00:00</option>
+					<option value="17:00:00">17:00:00</option>
+					<option value="18:00:00">18:00:00</option>
+					<option value="19:00:00">19:00:00</option>
+					<option value="20:00:00">20:00:00</option>
+					<option value="21:00:00">21:00:00</option>
+					<option value="22:00:00">22:00:00</option>
+					<option value="23:00:00">23:00:00</option>
+			</select></td>
+		</tr>
+		<br>
+		<tr>
+			<td>
+				<div>End Date</div>
+			</td>
+		</tr>
+		<tr>
+			<td><input type="Text" name="endDate12" id="endDate12"
+				maxlength="25" size="25" value="2013-02-22"><a
+				href="javascript:NewCal('endDate12','ddmmmyyyy',true,24)"><img
+					src="../images/cal.gif" width="16" height="16" border="0"
+					alt="Pick a date"></a> <span class="descriptions"> Select
+					date..</span><br> <select id='endTime12'>
+					<option value="00:00:00">00:00:00</option>
+					<option value="01:00:00">01:00:00</option>
+					<option value="02:00:00">02:00:00</option>
+					<option value="03:00:00">03:00:00</option>
+					<option value="04:00:00">04:00:00</option>
+					<option value="05:00:00">05:00:00</option>
+					<option value="06:00:00">06:00:00</option>
+					<option value="07:00:00">07:00:00</option>
+					<option value="08:00:00">08:00:00</option>
+					<option value="09:00:00">09:00:00</option>
+					<option value="10:00:00">10:00:00</option>
+					<option value="11:00:00">11:00:00</option>
+					<option value="12:00:00">12:00:00</option>
+					<option value="13:00:00">13:00:00</option>
+					<option value="14:00:00">14:00:00</option>
+					<option value="15:00:00">15:00:00</option>
+					<option value="16:00:00">16:00:00</option>
+					<option value="17:00:00">17:00:00</option>
+					<option value="18:00:00">18:00:00</option>
+					<option value="19:00:00">19:00:00</option>
+					<option value="20:00:00">20:00:00</option>
+					<option value="21:00:00">21:00:00</option>
+					<option value="22:00:00">22:00:00</option>
+					<option value="23:00:00">23:00:00</option>
+			</select></td>
+		</tr>
+
+
+	</table>
+	<div style="text-align: center">
+		<input id="button12" type="button" value="submit"
+			onclick="userStory12()" />
+	</div>
+	<div id="container12"
+		style="min-width: 80%; height: 0px; margin: 0 auto" ></div><br><br>
+	<div id="results12"></div>
+
+
+</body>
+</html>
+</html>

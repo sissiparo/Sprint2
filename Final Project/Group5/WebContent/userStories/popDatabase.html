@@ -1,0 +1,38 @@
+<!-- Group5- Ger Hennessy, Ian Murray, Paula Suciu, Muireann Walsh, Ronan Monahan, Fergal Byrne -->
+<html >
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../script.js"></script>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <script>
+	function test(){
+	alert("test");
+		}
+    
+    function upload(){
+    	document.getElementById("uploadButton").setAttribute("style", "display:none");
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/Group5/rest/load/add",
+            headers: {
+                "Access-Control-Allow-Origin": "*"
+            },
+            success: function() {
+                alert("Uploaded");
+                document.getElementById("uploadButton").setAttribute("style", "display:block");
+            },
+            error: function(e) {
+                alert("error: "+e);
+            }
+        });
+        return false;
+    };
+
+</script>   
+</head>
+<body onload="adminLevel()" style="text-align: center;">
+   <p class="header black"><br>Populate database from file</p>
+ <br><br><center></center><img src="../images/loading.gif" id="spinner" alt="loading..." style="display: none;" /></center>
+ <br><center><span class="main blue" onclick="upload()" id="uploadButton"><a>Upload</a></span></center>
+</body>

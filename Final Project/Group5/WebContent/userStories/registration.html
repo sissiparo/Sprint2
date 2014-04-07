@@ -1,0 +1,127 @@
+<!-- Group5- Ger Hennessy, Ian Murray, Paula Suciu, Muireann Walsh, Ronan Monahan, Fergal Byrne -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="../script.js"></script> 
+<link rel="stylesheet" type="text/css" href="../style.css">
+<script>
+    function register(){
+    	var userName=document.getElementById("txtUserName").value;
+    	var password=document.getElementById("txtPassword").value;
+    	var employeeNumber=document.getElementById("txtEmployeeNumber").value;
+    	var firstName=document.getElementById("txtFirstName").value;
+    	var lastName=document.getElementById("txtLastName").value;
+    	var userType=document.getElementById("txtUserType").value;
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/Group5/rest/user/" + userName,
+            dataType : 'json',
+            headers: {
+                "Access-Control-Allow-Origin": "*"
+            },
+            success: function(resp) {
+				alert("User Exists");
+            },
+            error: function(e) {
+                persist();
+                
+            }
+        });
+        return false;
+    };
+
+    function persist(){
+    	var userName=document.getElementById("txtUserName").value;
+    	var password=document.getElementById("txtPassword").value;
+    	var retypePassword=document.getElementById("txtPasswordRe").value;
+    	var employeeNumber=document.getElementById("txtEmployeeNumber").value;
+    	var firstName=document.getElementById("txtFirstName").value;
+    	var lastName=document.getElementById("txtLastName").value;
+    	var userType=document.getElementById("txtUserType").value;
+    	$('#txtUserName').val('');
+    	$('#txtPassword').val('');
+    	$('#txtPasswordRe').val('');
+    	$('#txtEmployeeNumber').val('');
+    	$('#txtFirstName').val('');
+    	$('#txtLastName').val('');
+    	$('#txtUserType').val('');
+    	if(password === retypePassword){
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/Group5/rest/user/" + userName 
+            + "/" + password + "/" + employeeNumber + "/" + firstName 
+            + "/" + lastName + "/" + userType ,
+            dataType : 'json',
+            headers: {
+                "Access-Control-Allow-Origin": "*"
+            },
+            success: function(resp) {
+				alert("New User Added");
+            },
+            error: function(e) {
+                
+            }
+        });
+    	}
+    	else{
+			alert("Passwords must match");
+        	}
+    };
+	</script>
+</head>
+<body onload="adminLevel()" style="text-align: center;">
+	<p class="header black"><br>Register a new user</p>
+	<table border="0" align="center" width=100%>
+
+		<tr ALIGN="CENTER">
+			<td height=450px>
+
+				<p>Please enter the user to be added's details below
+				<p>
+					<br>
+				<table align="center">
+					<tr>
+						<td><font face="verdana" size="2px">User Name:</font></td>
+						<td><input type="text" name="txtUserName" id="txtUserName"></td>
+					</tr>
+					<tr>
+						<td><font face="verdana" size="2px">Password:</font></td>
+						<td><input type="password" name="txtPassword" id="txtPassword"></td>
+					</tr>
+					<tr>
+						<td><font face="verdana" size="2px">Retype Password:</font></td>
+						<td><input type="password" name="txtPasswordRe" id="txtPasswordRe"></td>
+					</tr>
+					<tr>
+						<td><font face="verdana" size="2px">Employee Number:</font></td>
+						<td><input type="text" name="txtEmployeeNumber"
+							id="txtEmployeeNumber"></td>
+					</tr>
+					<tr>
+						<td><font face="verdana" size="2px">First Name:</font></td>
+						<td><input type="text" name="txtFirstName" id="txtFirstName"></td>
+					</tr>
+					<tr>
+						<td><font face="verdana" size="2px">Last Name:</font></td>
+						<td><input type="text" name="txtLastName" id="txtLastName"></td>
+					</tr>
+					<tr>
+						<td><font face="verdana" size="2px">UserType:</font></td>
+						<td><select name="txtUserType" id="txtUserType"><option
+									value="Customer_Service_Rep">Customer Service
+									Representative</option>
+								<option value="Support_Engineer">Support Engineer</option>
+								<option value="Network_Management_Engineer">Network
+									Management Engineer</option>
+								<option value="System_Administrator">System
+									Administrator</option></td>
+					</tr>
+				</table>
+			</td>
+	</table>
+	<input id="button" type="button" value="Register" onclick="register()" />
+</body>
+</html>

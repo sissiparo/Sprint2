@@ -1,0 +1,28 @@
+<!-- Group5- Ger Hennessy, Ian Murray, Paula Suciu, Muireann Walsh, Ronan Monahan, Fergal Byrne -->
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" charset="utf-8" src="../script.js"></script>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+	charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body style="text-align: center;" id='body14' onload='supportEngineerLevel()'>
+	<p class="header orange">
+		US 14 - Display, for the Failure Cause Class below,<br> the IMSIs that
+		were affected
+	</p>
+	Select Cause code &nbsp <select id="failureClassID" name="failureClassID"   >
+		<option ></option>
+		<option value="0">0-EMERGENCY</option>
+		<option value="1">1-HIGH PRIORITY ACCESS</option>
+		<option value="2">2-MO DATA</option>
+		<option value="3">3-MO SIGNALLING</option>
+		<option value="4">4-MT ACCESS</option>
+</select>
+
+	<input id="button4" type="button" value="submit"
+		onclick="userStory14()" /><br><br>
+	<div id="results14"></div>
+</body>
